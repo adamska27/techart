@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -37,6 +38,12 @@ const Title = styled.p`
 `;
 
 export default class PopularGames extends React.Component {
+  static propTypes = {
+    fetchPopularGames: PropTypes.func,
+    isFetching: PropTypes.bool,
+    popularGames: PropTypes.array
+  };
+
   fetchPopularGames = () => {
     return this.props.fetchPopularGames();
   };
