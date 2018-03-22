@@ -66,8 +66,8 @@ export default class PopularGames extends React.Component {
       <Container>
         {popularGames.map(game => {
           return (
-            <Link to={`/game/${game.id}`}>
-              <li key={game.id}>{this.PopularGamesItem(game)}</li>
+            <Link key={game.id} to={`/game/${game.id}`}>
+              <li>{this.PopularGamesItem(game)}</li>
             </Link>
           );
         })}
