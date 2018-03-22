@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import store from './store';
 
-import Header from './components/Header';
+import Header from './components/Header/index';
 import HomePage from './containers/HomePage';
 
 class App extends Component {
