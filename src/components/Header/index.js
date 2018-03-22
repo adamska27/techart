@@ -42,21 +42,21 @@ export default class Header extends React.Component {
             <Link to="/">
               <li>Accueil</li>
             </Link>
-            <Link to="/">
+            <Link to="/games">
               <li>Jeux</li>
             </Link>
-            <Link to="/">
+            <Link to="/members">
               <li>membres</li>
             </Link>
-            <Link to="/">
+            <Link to="/mygames">
               <li>mes jeux</li>
             </Link>
           </MainNav>
           <AccountNav>
-            <Link to="/">
+            <Link to="/signup">
               <li>Inscription</li>
             </Link>
-            <Link to="/">
+            <Link to="/signin">
               <li>Connexion</li>
             </Link>
           </AccountNav>
