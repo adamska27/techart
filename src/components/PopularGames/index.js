@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import getBetterCover from '../utils/getBetterCover';
+import getBetterCover from '../../utils/getBetterCover';
 
 const Container = styled.ul`
   display: grid;
@@ -69,9 +69,9 @@ export default class PopularGames extends React.Component {
   };
 
   render() {
-    const { popularGames } = this.props;
+    const { isFetching, popularGames } = this.props;
 
-    if (!popularGames.length) {
+    if (isFetching) {
       return <p>Loading</p>;
     }
 
