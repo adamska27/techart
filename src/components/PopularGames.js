@@ -44,6 +44,12 @@ export default class PopularGames extends React.Component {
     popularGames: PropTypes.array
   };
 
+  static defaultProps = {
+    fetchPopularGames: () => null,
+    isFetching: false,
+    popularGames: []
+  };
+
   fetchPopularGames = () => {
     return this.props.fetchPopularGames();
   };
