@@ -51,8 +51,7 @@ export default class PopularGames extends React.PureComponent {
   };
 
   fetchPopularGames = () => {
-    // check popularGames state in the store and fetch only if is empty
-    if (!this.props.popularGames.length) this.props.fetchPopularGames();
+    this.props.fetchPopularGames();
   };
 
   componentDidMount() {
