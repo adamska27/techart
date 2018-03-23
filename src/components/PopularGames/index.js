@@ -37,7 +37,7 @@ const Title = styled.p`
   text-align: center;
 `;
 
-export default class PopularGames extends React.Component {
+export default class PopularGames extends React.PureComponent {
   static propTypes = {
     fetchPopularGames: PropTypes.func,
     isFetching: PropTypes.bool,
@@ -51,7 +51,8 @@ export default class PopularGames extends React.Component {
   };
 
   fetchPopularGames = () => {
-    return this.props.fetchPopularGames();
+    // check popularGames state in the store and fetch only if is empty
+    if (!this.props.popularGames.length) this.props.fetchPopularGames();
   };
 
   componentDidMount() {
