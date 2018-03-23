@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import store from './store';
@@ -26,6 +26,7 @@ class App extends Component {
                   </div>
                 )}
               />
+              <Redirect from="*" to="/" component={HomePage} />
             </React.Fragment>
           </ThemeProvider>
         </Router>
