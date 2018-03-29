@@ -6,15 +6,19 @@ import {
 
 import fetchAgain from '../../utils/fetchAgain.js';
 
-export const fetchPopularGamesFailed = error => {
-  return { type: FETCH_POPULAR_GAMES_FAILED, error };
-};
-export const fetchPopularGamesRequest = () => {
-  return { type: FETCH_POPULAR_GAMES_REQUEST };
-};
-export const fetchPopularGamesSuccess = json => {
-  return { type: FETCH_POPULAR_GAMES_SUCCESS, json };
-};
+export const fetchPopularGamesFailed = error => ({
+  type: FETCH_POPULAR_GAMES_FAILED,
+  error
+});
+
+export const fetchPopularGamesRequest = () => ({
+  type: FETCH_POPULAR_GAMES_REQUEST
+});
+
+export const fetchPopularGamesSuccess = json => ({
+  type: FETCH_POPULAR_GAMES_SUCCESS,
+  json
+});
 
 export const fetchPopularGames = () => (dispatch, getState) => {
   const timeSinceLastFetch = getState().popularGames.lastFetched;
@@ -29,7 +33,7 @@ export const fetchPopularGames = () => (dispatch, getState) => {
 
     fetch(`${proxyUrl}${apiUrl}`, {
       headers: {
-        'user-key': 'secret'
+        'user-key': '08abe503480077a9ef8fd365441dae0e'
       }
     })
       .then(

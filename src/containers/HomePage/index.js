@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchPopularGames } from './actions';
-import PopularGames from '../../components/PopularGames/index';
+import PopularGames from '../../components/PopularGames';
 
 const mapStateToProps = state => ({
   popularGames: state.popularGames.popularGames,
