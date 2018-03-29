@@ -18,14 +18,14 @@ describe('Header', () => {
       )
     ).toBe(true);
   });
-});
 
-it('match the Header snapshot', () => {
-  const component = renderer.create(
-    <MemoryRouter>
-      <Component />
-    </MemoryRouter>
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  it('match the Header snapshot', () => {
+    const component = renderer.create(
+      <MemoryRouter>
+        <Component />
+      </MemoryRouter>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

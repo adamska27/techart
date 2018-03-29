@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`match the Header snapshot 1`] = `
+exports[`Header match the Header snapshot 1`] = `
 <header
   className="sc-bwzfXH fcWfTy"
 >
