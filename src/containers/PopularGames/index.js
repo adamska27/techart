@@ -12,6 +12,8 @@ const mapDispatchToProps = dispatch => ({
   fetchPopularGames: () => dispatch(fetchPopularGames())
 });
 
-const HomePage = connect(mapStateToProps, mapDispatchToProps)(PopularGames);
+const PopularGamesContainer = connect(mapStateToProps, mapDispatchToProps)(
+  PopularGames
+);
 
-export default HomePage;
+export default PopularGamesContainer;
