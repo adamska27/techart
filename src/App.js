@@ -11,33 +11,29 @@ import { ThemeProvider } from 'styled-components';
 import store from './store';
 import { theme } from './styles/theme';
 
-import Header from './components/Header/index';
-import HomePage from './containers/HomePage';
 import NotFound from './components/NotFound';
+
+import HeaderContainer from './containers/Header';
+
+import Home from './pages/Home';
+import Product from './pages/Product';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <Router>
             <React.Fragment>
-              <Header />
+              <HeaderContainer />
               <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route
-                  path="/game/:gameId"
-                  render={({ match }) => (
-                    <div>
-                      <h1>{match.params.gameId}</h1>
-                    </div>
-                  )}
-                />
+                <Route exact path="/" component={Home} />
+                <Route path="/game/:gameId" component={Product} />
                 <Route component={NotFound} />
               </Switch>
             </React.Fragment>
-          </ThemeProvider>
-        </Router>
+          </Router>
+        </ThemeProvider>
       </Provider>
     );
   }
