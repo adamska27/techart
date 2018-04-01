@@ -2,23 +2,31 @@
 
 exports[`Header match the Header snapshot 1`] = `
 <header
-  className="sc-bwzfXH fcWfTy"
+  className="sc-bxivhb gwefrW"
 >
   <nav
-    className="sc-htpNat ljNRKX"
+    className="sc-ifAKCX eYlISq"
   >
+    <div
+      className="sc-bwzfXH gzCqZe"
+      onClick={[Function]}
+    >
+      <img
+        src="btnNavMobile.svg"
+      />
+    </div>
     <a
       href="/"
       onClick={[Function]}
     >
       <div
-        className="sc-bxivhb oNkbj"
+        className="sc-EHOje gefODq"
       >
         Logo
       </div>
     </a>
     <ul
-      className="sc-ifAKCX eRcwmR"
+      className="sc-bZQynM jYZVnb"
     >
       <a
         href="/"
@@ -54,7 +62,7 @@ exports[`Header match the Header snapshot 1`] = `
       </a>
     </ul>
     <ul
-      className="sc-bdVaJa eEQXFw"
+      className="sc-bdVaJa cqVyzt"
     >
       <a
         href="/signup"

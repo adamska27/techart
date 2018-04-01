@@ -2,6 +2,6 @@
 
 exports[`PopularGames should match the snapshot 1`] = `
 <ul
-  className="sc-bdVaJa gHTIQS"
+  className="sc-bdVaJa liOMPl"
 />
 `;
