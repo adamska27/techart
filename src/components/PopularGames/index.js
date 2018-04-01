@@ -8,14 +8,13 @@ import getBetterCover from '../../utils/getBetterCover';
 const Container = styled.ul`
   display: grid;
   grid-auto-columns: min-content;
-  /* grid-auto-rows: 1fr; */
   grid-template-areas: 'game game game game game game game game';
   grid-template-rows: 1fr;
   list-style-type: none;
   margin: 0 auto;
   overflow-y: scroll;
   padding: 0;
-  width: 90%;
+  width: 100%;
 `;
 
 const Cover = styled.img`
