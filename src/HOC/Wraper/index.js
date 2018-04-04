@@ -27,8 +27,8 @@ const Wraper = Component => {
       const { navMobile } = this.props;
       return (
         <GridMobile>
-          <NavMobile navMobile={this.props.navMobile} />
-          <ContainerPage navMobile={this.props.navMobile}>
+          <NavMobile navMobile={navMobile} />
+          <ContainerPage navMobile={navMobile}>
             <Component {...this.props} />
           </ContainerPage>
         </GridMobile>

@@ -97,11 +97,11 @@ export default class Header extends React.Component {
         <ContainerNav>
           {navMobile ? (
             <CrossNavMobile onClick={this.onCrossNavMobileClick}>
-              <img src={crossNavMobile} />
+              <img src={crossNavMobile} alt="cross-nav-mobile" />
             </CrossNavMobile>
           ) : (
             <BtnNavMobile onClick={this.onBtnNavMobileClick}>
-              <img src={btnNavMobile} />
+              <img src={btnNavMobile} alt="button-nav-mobile" />
             </BtnNavMobile>
           )}
           <Link to="/">
