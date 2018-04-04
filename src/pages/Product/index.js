@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default class Product extends React.Component {
+import Wraper from '../../HOC/Wraper';
+
+class Product extends React.Component {
   render() {
     return (
       <div>
@@ -10,3 +12,5 @@ export default class Product extends React.Component {
     );
   }
 }
+
+export default Wraper(Product);

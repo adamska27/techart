@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import media from '../../styles/media';
 
 const getTransformValue = ({ navMobile }) => {
-  const value = navMobile ? '0' : '-80%';
+  const value = navMobile ? '0' : '-100%';
   return `transform: translateX(${value})`;
 };
 

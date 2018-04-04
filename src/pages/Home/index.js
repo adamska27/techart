@@ -9,9 +9,7 @@ import PopularGamesContainer from '../../containers/PopularGames';
 import GridMobile from '../../components/GridMobile';
 import NavMobile from '../../components/NavMobile';
 
-import withNavMobile from '../../HOC/Wrapper';
-
-const mapStateToProps = state => ({ navMobile: state.navMobile });
+import Wraper from '../../HOC/Wraper';
 
 const getTransformValue = ({ navMobile }) => {
   const value = navMobile ? '0' : '-80%';
@@ -33,52 +31,47 @@ class Home extends React.Component {
   render() {
     const { navMobile } = this.props;
     return (
-      <GridMobile>
-        <NavMobile navMobile={navMobile} />
-        <Wrapper navMobile={navMobile}>
-          <div>
-            <PopularGamesContainer />
-            <div
-              style={{
-                height: '100px',
-                width: '100%',
-                border: '1px solid black'
-              }}
-            >
-              Autre contenu
-            </div>
-            <div
-              style={{
-                height: '100px',
-                width: '100%',
-                border: '1px solid black'
-              }}
-            >
-              Autre contenu
-            </div>
-            <div
-              style={{
-                height: '100px',
-                width: '100%',
-                border: '1px solid black'
-              }}
-            >
-              Autre contenu
-            </div>
-            <div
-              style={{
-                height: '100px',
-                width: '100%',
-                border: '1px solid black'
-              }}
-            >
-              Autre contenu
-            </div>
-          </div>
-        </Wrapper>
-      </GridMobile>
+      <div>
+        <PopularGamesContainer />
+        <div
+          style={{
+            height: '100px',
+            width: '100%',
+            border: '1px solid black'
+          }}
+        >
+          Autre contenu
+        </div>
+        <div
+          style={{
+            height: '100px',
+            width: '100%',
+            border: '1px solid black'
+          }}
+        >
+          Autre contenu
+        </div>
+        <div
+          style={{
+            height: '100px',
+            width: '100%',
+            border: '1px solid black'
+          }}
+        >
+          Autre contenu
+        </div>
+        <div
+          style={{
+            height: '100px',
+            width: '100%',
+            border: '1px solid black'
+          }}
+        >
+          Autre contenu
+        </div>
+      </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(Home);
+export default Wraper(Home);
