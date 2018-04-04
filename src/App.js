@@ -6,12 +6,11 @@ import { ThemeProvider } from 'styled-components';
 import store from './store';
 import { theme } from './styles/theme';
 
-import NotFound from './components/NotFound';
-
 import HeaderContainer from './containers/Header';
 
 import Home from './pages/Home';
 import Product from './pages/Product';
+import PagesNotFound from './pages/PagesNotFound';
 
 class App extends Component {
   render() {
@@ -24,7 +23,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/game/:gameId" component={Product} />
-                <Route component={NotFound} />
+                <Route component={PagesNotFound} />
               </Switch>
             </React.Fragment>
           </Router>
