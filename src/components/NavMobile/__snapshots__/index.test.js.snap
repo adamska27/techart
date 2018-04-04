@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavMobile should match the snapshot 1`] = `
+<div
+  className="sc-bdVaJa dGcPrY"
+  transform="transform: translateX(-100%)"
+>
+  Je suis la nav mobile
+</div>
+`;
