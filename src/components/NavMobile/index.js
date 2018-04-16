@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import media from '../../styles/media';
 
@@ -9,10 +10,9 @@ const getTransformValue = ({ navMobile }) => {
   return `transform: translateX(${value})`;
 };
 
-const Container = styled.div.attrs({ transform: getTransformValue })`
+const Container = styled.ul.attrs({ transform: getTransformValue })`
   background-color: lightgrey;
   display: none;
-  height: 10vh;
   width: 100%;
 
   ${media.tablet`
@@ -22,6 +22,12 @@ const Container = styled.div.attrs({ transform: getTransformValue })`
   `};
 `;
 
+const LinkStyled = styled.div`
+  border: 1px black solid;
+  padding: 12px;
+  text-align: center;
+`;
+
 export default class NavMobile extends React.PureComponent {
   static propTypes = {
     navMobile: PropTypes.bool
@@ -29,6 +35,39 @@ export default class NavMobile extends React.PureComponent {
 
   render() {
     const { navMobile } = this.props;
-    return <Container navMobile={navMobile}>Je suis la nav mobile</Container>;
+    return (
+      <Container navMobile={navMobile}>
+        <Link to="/">
+          <LinkStyled>
+            <li>Accueil</li>
+          </LinkStyled>
+        </Link>
+        <Link to="/games">
+          <LinkStyled>
+            <li>Jeux</li>
+          </LinkStyled>
+        </Link>
+        <Link to="/members">
+          <LinkStyled>
+            <li>membres</li>
+          </LinkStyled>
+        </Link>
+        <Link to="/mygames">
+          <LinkStyled>
+            <li>mes jeux</li>
+          </LinkStyled>
+        </Link>
+        <Link to="/signup">
+          <LinkStyled>
+            <li>Inscription</li>
+          </LinkStyled>
+        </Link>
+        <Link to="/signin">
+          <LinkStyled>
+            <li>Connexion</li>
+          </LinkStyled>
+        </Link>
+      </Container>
+    );
   }
 }

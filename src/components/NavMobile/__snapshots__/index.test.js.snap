@@ -1,10 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavMobile should match the snapshot 1`] = `
-<div
-  className="sc-bdVaJa dGcPrY"
+<ul
+  className="sc-bdVaJa haNzVJ"
   transform="transform: translateX(-100%)"
 >
-  Je suis la nav mobile
-</div>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        Accueil
+      </li>
+    </div>
+  </a>
+  <a
+    href="/games"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        Jeux
+      </li>
+    </div>
+  </a>
+  <a
+    href="/members"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        membres
+      </li>
+    </div>
+  </a>
+  <a
+    href="/mygames"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        mes jeux
+      </li>
+    </div>
+  </a>
+  <a
+    href="/signup"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        Inscription
+      </li>
+    </div>
+  </a>
+  <a
+    href="/signin"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH cNRBQY"
+    >
+      <li>
+        Connexion
+      </li>
+    </div>
+  </a>
+</ul>
 `;

@@ -10,9 +10,8 @@ const Container = styled.ul`
   grid-auto-columns: min-content;
   grid-template-areas: 'game game game game game game game game';
   grid-template-rows: 1fr;
-  list-style-type: none;
   margin: 0 auto;
-  overflow-y: scroll;
+  overflow-x: scroll;
   padding: 0;
   width: 100%;
 `;
