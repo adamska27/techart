@@ -40,6 +40,7 @@ const CrossNavMobile = styled(BtnNavMobile)`
 
 const ContainerHeader = styled.header`
   background-color: black;
+  color: white;
 `;
 
 const ContainerNav = styled.nav`
@@ -125,7 +126,7 @@ export default class Header extends React.Component {
             <Link to="/signup">
               <li>Inscription</li>
             </Link>
-            <Link to="/signin">
+            <Link to="/login">
               <li>Connexion</li>
             </Link>
           </AccountNav>
