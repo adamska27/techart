@@ -62,7 +62,7 @@ export default class NavMobile extends React.PureComponent {
             <li>Inscription</li>
           </LinkStyled>
         </Link>
-        <Link to="/signin">
+        <Link to="/login">
           <LinkStyled>
             <li>Connexion</li>
           </LinkStyled>
