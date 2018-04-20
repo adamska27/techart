@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
-import { fetchSignUp, fetchLogin } from './actions';
 
+import { fetchSignUp, fetchLogin } from './actions';
 import Account from '../../components/Forms/Account';
 
 const mapStateToProps = state => ({
-  error: state.error,
-  isFetching: state.isFetching
+  error: state.account.error,
+  isFetching: state.account.isFetching,
+  login: state.account.login,
+  register: state.account.register
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -13,6 +15,6 @@ const mapDispatchToProps = dispatch => ({
   fetchLogin: data => dispatch(fetchLogin(data))
 });
 
-const SignUpContainer = connect(mapStateToProps, mapDispatchToProps)(Account);
+const AccountContainer = connect(mapStateToProps, mapDispatchToProps)(Account);
 
-export default SignUpContainer;
+export default AccountContainer;
