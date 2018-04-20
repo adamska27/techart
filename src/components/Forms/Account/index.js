@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
-export default class SignUp extends React.Component {
+export default class Account extends React.Component {
   state = {
     firstName: '',
     lastName: '',
@@ -11,9 +12,20 @@ export default class SignUp extends React.Component {
   };
 
   static propTypes = {
+    error: PropTypes.string,
     fetchSignUp: PropTypes.func,
     fetchLogin: PropTypes.func,
+    isFetching: PropTypes.bool,
+    login: PropTypes.bool,
+    register: PropTypes.bool,
     template: PropTypes.string
+  };
+
+  static defaultProps = {
+    error: null,
+    isFetching: false,
+    login: false,
+    register: false
   };
 
   onChange = e => {
@@ -23,25 +35,35 @@ export default class SignUp extends React.Component {
   };
 
   onSubmit = e => {
-    const data = this.state;
     e.preventDefault();
-    this.props.template === 'signup'
-      ? this.props.fetchSignUp(data)
-      : this.props.fetchLogin(data);
+    const data = this.state;
+    const { fetchSignUp, fetchLogin, template } = this.props;
+    // adapt the submit function according to the form (template)
+    template === 'signup' ? fetchSignUp(data) : fetchLogin(data);
   };
 
   render() {
+    const { login, register, template } = this.props;
+    // redirect when the user finish the inscription
+    if (register && template === 'signup') {
+      return <Redirect to="/login" />;
+    }
+    // redirect when the user login
+    if (login) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          {/* input for the signUp page only */}
-          {this.props.template === 'signup' && (
+          {/* inputs for the signUp page only */}
+          {template === 'signup' && (
             <React.Fragment>
               <div>
                 <label>Prénom</label>
                 <input
                   name="firstName"
                   onChange={this.onChange}
+                  required
                   type="text"
                   value={this.state.value}
                 />
@@ -51,6 +73,7 @@ export default class SignUp extends React.Component {
                 <input
                   name="lastName"
                   onChange={this.onChange}
+                  required
                   type="text"
                   value={this.state.value}
                 />
@@ -60,6 +83,7 @@ export default class SignUp extends React.Component {
                 <input
                   name="userName"
                   onChange={this.onChange}
+                  required
                   type="text"
                   value={this.state.value}
                 />
@@ -73,6 +97,7 @@ export default class SignUp extends React.Component {
               name="email"
               onChange={this.onChange}
               placeholder="jack@gmail.com"
+              required
               type="email"
               value={this.state.value}
             />
@@ -82,6 +107,7 @@ export default class SignUp extends React.Component {
             <input
               name="password"
               onChange={this.onChange}
+              required
               type="password"
               value={this.state.value}
             />
