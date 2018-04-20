@@ -23,15 +23,18 @@ export const fetchSignUp = data => async dispatch => {
     body: JSON.stringify(data)
   });
   if (fetchSignUp.status === 200) {
-    return dispatch(signUpSuccess(fetchSignUp));
+    const result = await fetchSignUp.json();
+    console.log(result);
+    return dispatch(signUpSuccess(result));
   } else {
-    return dispatch(signUpFailed(fetchSignUp));
+    const error = await fetchSignUp.json();
+    return dispatch(signUpFailed(error));
   }
 };
 
 // LOGIN
 
-export const loginSuccess = success => ({ type: LOGIN_SUCCESS, success });
+export const loginSuccess = jwt => ({ type: LOGIN_SUCCESS, jwt });
 
 export const loginFailed = error => ({
   type: LOGIN_FAILED,
@@ -50,10 +53,10 @@ export const fetchLogin = data => async dispatch => {
     },
     body: JSON.stringify(data)
   });
-  console.log(fetchLogin);
-  if (fetchLogin.status === 200) {
-    return dispatch(loginSuccess(fetchLogin));
+  const jwt = await fetchLogin.json();
+  if (jwt) {
+    return dispatch(loginSuccess(jwt));
   } else {
-    return dispatch(loginFailed(fetchLogin));
+    return dispatch(loginFailed(jwt));
   }
 };
