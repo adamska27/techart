@@ -34,9 +34,9 @@ export default class NavMobile extends React.PureComponent {
   };
 
   render() {
-    const { navMobile } = this.props;
+    const { closeNavMobile, navMobile } = this.props;
     return (
-      <Container navMobile={navMobile}>
+      <Container navMobile={navMobile} onClick={closeNavMobile}>
         <Link to="/">
           <LinkStyled>
             <li>Accueil</li>

@@ -4,10 +4,16 @@ import { connect } from 'react-redux';
 
 import media from '../../styles/media';
 
+import { closeNavMobile } from '../../containers/Header/actions';
+
 import GridMobile from '../../components/GridMobile';
 import NavMobile from '../../components/NavMobile';
 
 const mapStateToProps = state => ({ navMobile: state.navMobile });
+
+const mapDispatchToProps = dispatch => ({
+  closeNavMobile: () => dispatch(closeNavMobile())
+});
 
 const getTransformValue = ({ navMobile }) => {
   const value = navMobile ? '0' : '-80%';
@@ -24,10 +30,10 @@ const ContainerPage = styled.div.attrs({ transform: getTransformValue })`
 const Wraper = Component => {
   return class WrapComponent extends React.Component {
     render() {
-      const { navMobile } = this.props;
+      const { closeNavMobile, navMobile } = this.props;
       return (
         <GridMobile>
-          <NavMobile navMobile={navMobile} />
+          <NavMobile navMobile={navMobile} closeNavMobile={closeNavMobile} />
           <ContainerPage navMobile={navMobile}>
             <Component {...this.props} />
           </ContainerPage>
@@ -37,4 +43,5 @@ const Wraper = Component => {
   };
 };
 
-export default Component => connect(mapStateToProps, null)(Wraper(Component));
+export default Component =>
+  connect(mapStateToProps, mapDispatchToProps)(Wraper(Component));
