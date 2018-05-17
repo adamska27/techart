@@ -1,5 +1,12 @@
-import { LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCCESS } from './constants';
-import { SIGNUP_FAILED, SIGNUP_REQUEST, SIGNUP_SUCCESS } from './constants';
+import {
+  LOGIN_FAILED,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  SIGNUP_FAILED,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS
+} from './constants';
 
 // SIGNUP
 
@@ -60,3 +67,7 @@ export const fetchLogin = data => async dispatch => {
     return dispatch(loginFailed(jwt));
   }
 };
+
+// LOGOUT
+
+export const logout = () => ({ type: LOGOUT });
