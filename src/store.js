@@ -1,8 +1,29 @@
 import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import throttle from 'lodash/throttle';
 
 import rootReducer from './reducers';
 
-let store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
+import { loadState, saveState } from './utils/localStorage';
+
+const persitedState = loadState();
+
+// second argument is preloaded state and overide the initial state
+let store = createStore(
+  rootReducer,
+  persitedState,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+// to get notify when account from the store state update
+store.subscribe(
+  // throttle able to not called saveState function every time the store update
+  throttle(() => {
+    saveState({
+      account: store.getState().account
+    });
+  }, 1000)
+);
 
 export default store;
