@@ -5,6 +5,7 @@ import {
 } from './constants';
 
 import fetchAgain from '../../utils/fetchAgain.js';
+import fetchWithProxy from '../../utils/fetchWithProxy';
 
 export const fetchPopularGamesFailed = error => ({
   type: FETCH_POPULAR_GAMES_FAILED,
@@ -26,16 +27,11 @@ export const fetchPopularGames = () => (dispatch, getState) => {
 
   if (fetchOrNo) {
     dispatch(fetchPopularGamesRequest());
-    // use a proxy cause of restrictions API
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl =
-      'https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&order=popularity:desc&limit=8';
 
-    fetch(`${proxyUrl}${apiUrl}`, {
-      headers: {
-        'user-key': '08abe503480077a9ef8fd365441dae0e'
-      }
-    })
+    const apiUrl =
+      'https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=1526565146924&filter[hypes][gt]=100&order=popularity:desc&limit=8';
+
+    fetchWithProxy(apiUrl)
       .then(
         response => response.json(),
         error => dispatch(fetchPopularGamesFailed(error))
