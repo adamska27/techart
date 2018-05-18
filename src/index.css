@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+ol, ul, li {
 	list-style: none;
 }
 blockquote, q {
@@ -45,4 +45,9 @@ table {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input {
+	border: none;
+	outline: none;
 }

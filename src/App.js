@@ -8,10 +8,10 @@ import { theme } from './styles/theme';
 
 import HeaderContainer from './containers/Header';
 
+import Game from './pages/Game';
 import Home from './pages/Home';
-import Product from './pages/Product';
-import PagesNotFound from './pages/PagesNotFound';
 import LogIn from './pages/LogIn';
+import PagesNotFound from './pages/PagesNotFound';
 import SignUp from './pages/SignUp';
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
               <HeaderContainer />
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/game/:gameId" component={Product} />
+                <Route path="/game/:gameId" component={Game} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={LogIn} />
                 <Route component={PagesNotFound} />
