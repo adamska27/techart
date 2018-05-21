@@ -8,7 +8,7 @@ const initialState = {
   error: null,
   fetched: false,
   isFetching: false,
-  lastFetched: 0,
+  lastFetch: 0,
   popularGames: []
 };
 
@@ -21,7 +21,7 @@ export const popularGames = (state = initialState, action) => {
       ...state,
       isFetching: false,
       fetched: true,
-      lastFetched: Date.now(),
+      lastFetch: action.lastFetch,
       popularGames: action.json
     };
   case FETCH_POPULAR_GAMES_FAILED:

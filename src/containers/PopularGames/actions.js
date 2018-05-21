@@ -16,13 +16,14 @@ export const fetchPopularGamesRequest = () => ({
   type: FETCH_POPULAR_GAMES_REQUEST
 });
 
-export const fetchPopularGamesSuccess = json => ({
+export const fetchPopularGamesSuccess = (json, lastFetch) => ({
   type: FETCH_POPULAR_GAMES_SUCCESS,
-  json
+  json,
+  lastFetch
 });
 
 export const fetchPopularGames = () => (dispatch, getState) => {
-  const timeSinceLastFetch = getState().popularGames.lastFetched;
+  const timeSinceLastFetch = getState().popularGames.lastFetch;
   const fetchOrNo = fetchAgain(timeSinceLastFetch);
 
   if (fetchOrNo) {
@@ -36,6 +37,9 @@ export const fetchPopularGames = () => (dispatch, getState) => {
         response => response.json(),
         error => dispatch(fetchPopularGamesFailed(error))
       )
-      .then(json => dispatch(fetchPopularGamesSuccess(json)));
+      .then(json => {
+        const lastFetch = Date.now();
+        return dispatch(fetchPopularGamesSuccess(json, lastFetch));
+      });
   }
 };
