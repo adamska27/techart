@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+
+const InputStyled = styled.input`
+  height: 20px;
+  margin-bottom: 10px;
+  width: 250px;
+`;
 
 export default class Account extends React.Component {
   state = {
@@ -59,30 +66,30 @@ export default class Account extends React.Component {
           {template === 'signup' && (
             <React.Fragment>
               <div>
-                <label>Prénom</label>
-                <input
+                <InputStyled
                   name="firstName"
                   onChange={this.onChange}
+                  placeholder="Prénom"
                   required
                   type="text"
                   value={this.state.value}
                 />
               </div>
               <div>
-                <label>Nom</label>
-                <input
+                <InputStyled
                   name="lastName"
                   onChange={this.onChange}
+                  placeholder="Nom"
                   required
                   type="text"
                   value={this.state.value}
                 />
               </div>
               <div>
-                <label>Pseudo</label>
-                <input
+                <InputStyled
                   name="userName"
                   onChange={this.onChange}
+                  placeholder="Pseudo"
                   required
                   type="text"
                   value={this.state.value}
@@ -92,8 +99,7 @@ export default class Account extends React.Component {
           )}
 
           <div>
-            <label>Email</label>
-            <input
+            <InputStyled
               name="email"
               onChange={this.onChange}
               placeholder="jack@gmail.com"
@@ -103,10 +109,10 @@ export default class Account extends React.Component {
             />
           </div>
           <div>
-            <label>Mot de passe</label>
-            <input
+            <InputStyled
               name="password"
               onChange={this.onChange}
+              placeholder="Password"
               required
               type="password"
               value={this.state.value}

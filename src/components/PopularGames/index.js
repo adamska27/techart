@@ -57,7 +57,9 @@ export default class PopularGames extends React.PureComponent {
   }
 
   PopularGamesItem = game => {
-    const cover = getBetterCover(game.cover.url);
+    const cover = game.cover
+      ? getBetterCover(game.cover.url)
+      : 'https://img.freepik.com/icones-gratuites/point-d-39-interrogation_318-52837.jpg?size=338&ext=jpg';
     return (
       <Game>
         <Cover src={cover} />
