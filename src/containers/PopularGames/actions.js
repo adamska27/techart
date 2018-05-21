@@ -7,6 +7,8 @@ import {
 import fetchAgain from '../../utils/fetchAgain.js';
 import fetchIgdbApi from '../../utils/fetchIgdbApi';
 
+const DATE_NOW = Date.now();
+
 export const fetchPopularGamesFailed = error => ({
   type: FETCH_POPULAR_GAMES_FAILED,
   error
@@ -29,8 +31,7 @@ export const fetchPopularGames = () => (dispatch, getState) => {
   if (fetchOrNo) {
     dispatch(fetchPopularGamesRequest());
 
-    const apiUrl =
-      'https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=1526565146924&filter[hypes][gt]=50&order=popularity:desc&limit=8';
+    const apiUrl = `https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=${DATE_NOW}&filter[hypes][gt]=50&order=popularity:desc&limit=8`;
 
     fetchIgdbApi(apiUrl)
       .then(
@@ -38,8 +39,7 @@ export const fetchPopularGames = () => (dispatch, getState) => {
         error => dispatch(fetchPopularGamesFailed(error))
       )
       .then(json => {
-        const lastFetch = Date.now();
-        return dispatch(fetchPopularGamesSuccess(json, lastFetch));
+        return dispatch(fetchPopularGamesSuccess(json, DATE_NOW));
       });
   }
 };

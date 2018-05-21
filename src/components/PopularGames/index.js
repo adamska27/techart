@@ -77,13 +77,14 @@ export default class PopularGames extends React.PureComponent {
 
     return (
       <Container>
-        {popularGames.map(game => {
-          return (
-            <Link key={game.id} to={`/game/${game.id}`}>
-              <li>{this.PopularGamesItem(game)}</li>
-            </Link>
-          );
-        })}
+        {popularGames &&
+          popularGames.map(game => {
+            return (
+              <Link key={game.id} to={`/game/${game.id}`}>
+                <li>{this.PopularGamesItem(game)}</li>
+              </Link>
+            );
+          })}
       </Container>
     );
   }
