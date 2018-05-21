@@ -29,7 +29,7 @@ export const fetchPopularGames = () => (dispatch, getState) => {
     dispatch(fetchPopularGamesRequest());
 
     const apiUrl =
-      'https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=1526565146924&filter[hypes][gt]=100&order=popularity:desc&limit=8';
+      'https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=1526565146924&filter[hypes][gt]=50&order=popularity:desc&limit=8';
 
     fetchWithProxy(apiUrl)
       .then(
