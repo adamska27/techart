@@ -1,4 +1,4 @@
-const fetchWithProxy = (url, options) => {
+const fetchIgdbApi = (url, options) => {
   // use a proxy cause of restrictions API
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   return fetch(`${proxyUrl}${url}`, {
@@ -9,4 +9,4 @@ const fetchWithProxy = (url, options) => {
   });
 };
 
-export default fetchWithProxy;
+export default fetchIgdbApi;

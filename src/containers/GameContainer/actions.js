@@ -4,7 +4,7 @@ import {
   FETCH_GAME_SUCCESS
 } from './constants';
 
-import fetchWithProxy from '../../utils/fetchWithProxy';
+import fetchIgdbApi from '../../utils/fetchIgdbApi';
 
 export const fetchGameFailed = error => ({ type: FETCH_GAME_FAILED, error });
 
@@ -17,7 +17,7 @@ export const fetchGame = id => dispatch => {
 
   const apiUrl = `https://api-2445582011268.apicast.io/games/${id}?fields=name,summary,screenshots`;
 
-  fetchWithProxy(apiUrl)
+  fetchIgdbApi(apiUrl)
     .then(
       response => response.json(),
       error => dispatch(fetchGameFailed(error))
