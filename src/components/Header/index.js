@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import decode from 'jwt-decode';
 
 import media from '../../styles/media';
 
@@ -91,8 +92,13 @@ export default class Header extends React.Component {
     this.props.closeNavMobile();
   };
 
+  logout = () => {
+    this.props.logout();
+  };
+
   render() {
-    const { navMobile } = this.props;
+    const { jwt, navMobile } = this.props;
+    const decodedToken = jwt ? decode(jwt) : null;
     return (
       <ContainerHeader>
         <ContainerNav>
@@ -123,12 +129,22 @@ export default class Header extends React.Component {
             </Link>
           </MainNav>
           <AccountNav>
-            <Link to="/signup">
-              <li>Inscription</li>
-            </Link>
-            <Link to="/login">
-              <li>Connexion</li>
-            </Link>
+            {/* check if there is a decodeToken and display the username */}
+            {decodedToken && decodedToken.userName ? (
+              <React.Fragment>
+                <li>{decodedToken.userName}</li>
+                <li onClick={this.logout}>déconnexion</li>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Link to="/signup">
+                  <li>Inscription</li>
+                </Link>
+                <Link to="/login">
+                  <li>Connexion</li>
+                </Link>
+              </React.Fragment>
+            )}
           </AccountNav>
         </ContainerNav>
       </ContainerHeader>
