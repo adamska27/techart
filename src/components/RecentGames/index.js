@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -36,13 +37,17 @@ export default class RecentGames extends React.Component {
   recentGamesItem = game => {
     return (
       <React.Fragment>
-        <div>
-          <img src={game.cover ? game.cover.url : null} />
-        </div>
+        <Link key={game.id} to={`/game/${game.id}`}>
+          <div>
+            <img src={game.cover ? game.cover.url : null} />
+          </div>
+        </Link>
         <TextContainer>
-          <TextElement>
-            <p>{game.name}</p>
-          </TextElement>
+          <Link key={game.id} to={`/game/${game.id}`}>
+            <TextElement>
+              <p>{game.name}</p>
+            </TextElement>
+          </Link>
           <TextElement>
             <p>{game.summary ? `${game.summary.substr(0, 100)}...` : null}</p>
           </TextElement>
@@ -52,7 +57,6 @@ export default class RecentGames extends React.Component {
   };
 
   render() {
-    console.log('props: ', this.props);
     const { isFetching, recentGames } = this.props;
 
     if (isFetching) {
