@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import store from './store';
 import { theme } from './styles/theme';
 
+import Footer from './components/Footer';
 import HeaderContainer from './containers/Header';
 
 import Game from './pages/Game';
@@ -29,6 +30,7 @@ class App extends Component {
                 <Route path="/login" component={LogIn} />
                 <Route component={PagesNotFound} />
               </Switch>
+              <Footer />
             </React.Fragment>
           </Router>
         </ThemeProvider>
