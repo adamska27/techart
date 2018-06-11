@@ -19,7 +19,14 @@ const TextElement = styled.div`
   padding-bottom: 6px;
 `;
 
+const DEFAULT_LIMIT = 3;
+
 export default class RecentGames extends React.Component {
+  state = {
+    // default show only 4 items
+    limit: DEFAULT_LIMIT
+  };
+
   static propTypes = {
     fetchRecentGames: PropTypes.func,
     recentGames: PropTypes.array
@@ -33,6 +40,11 @@ export default class RecentGames extends React.Component {
   componentDidMount() {
     this.props.fetchRecentGames();
   }
+
+  changeLimit = limit => {
+    const newLimit = limit === 3 ? 10 : 3;
+    this.setState({ limit: newLimit });
+  };
 
   recentGamesItem = game => {
     return (
@@ -57,16 +69,17 @@ export default class RecentGames extends React.Component {
   };
 
   render() {
-    const { isFetching, recentGames } = this.props;
+    const { limit } = this.state;
+    const { recentGames } = this.props;
 
-    if (isFetching) {
-      return <p>Loading</p>;
-    }
     return (
       <Container>
         <ul>
           {recentGames &&
-            recentGames.map(game => {
+            recentGames.map((game, i) => {
+              if (i > limit) {
+                return;
+              }
               return (
                 <ItemContainer key={game.id}>
                   {this.recentGamesItem(game)}
@@ -74,6 +87,9 @@ export default class RecentGames extends React.Component {
               );
             })}
         </ul>
+        <button onClick={() => this.changeLimit(limit)}>
+          {limit === DEFAULT_LIMIT ? 'Voir plus' : 'Voir moins'}
+        </button>
       </Container>
     );
   }

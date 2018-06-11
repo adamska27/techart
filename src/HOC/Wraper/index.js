@@ -21,6 +21,9 @@ const getTransformValue = ({ navMobile }) => {
 };
 
 const ContainerPage = styled.div.attrs({ transform: getTransformValue })`
+  /* to avoid the footer be in the middle of the page before data fetched */
+  min-height: 100vh;
+
   ${media.tablet`
     ${props => props.transform};
     transition: transform 0.3s;
