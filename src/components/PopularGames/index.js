@@ -38,13 +38,11 @@ const Title = styled.p`
 export default class PopularGames extends React.PureComponent {
   static propTypes = {
     fetchPopularGames: PropTypes.func,
-    isFetching: PropTypes.bool,
     popularGames: PropTypes.array
   };
 
   static defaultProps = {
     fetchPopularGames: () => null,
-    isFetching: false,
     popularGames: []
   };
 
@@ -69,11 +67,7 @@ export default class PopularGames extends React.PureComponent {
   };
 
   render() {
-    const { isFetching, popularGames } = this.props;
-
-    if (isFetching) {
-      return <p>Loading</p>;
-    }
+    const { popularGames } = this.props;
 
     return (
       <Container>

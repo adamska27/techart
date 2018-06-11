@@ -4,8 +4,7 @@ import { fetchPopularGames } from './actions';
 import PopularGames from '../../components/PopularGames';
 
 const mapStateToProps = state => ({
-  popularGames: state.popularGames.popularGames,
-  isFetching: state.popularGames.isFetching
+  popularGames: state.popularGames.popularGames
 });
 
 const mapDispatchToProps = dispatch => ({

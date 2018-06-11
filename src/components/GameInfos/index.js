@@ -13,20 +13,25 @@ const HeaderImageContainer = styled.div`
   width: 100%;
 `;
 
-export default class GameInfos extends React.Component {
+export default class GameInfos extends React.PureComponent {
   static propTypes = {
+    fetched: PropTypes.bool,
     fetchGame: PropTypes.func,
     game: PropTypes.array,
     match: PropTypes.object
   };
 
   static defaultProps = {
+    fetched: false,
     fetchGame: () => null,
     game: []
   };
 
   componentDidMount() {
-    this.props.fetchGame(this.props.match.params.gameId);
+    // check if already fetched the data
+    if (!this.props.fetched) {
+      this.props.fetchGame(this.props.match.params.gameId);
+    }
   }
 
   renderGame = game => {
@@ -58,11 +63,7 @@ export default class GameInfos extends React.Component {
     const { game } = this.props;
     return (
       <React.Fragment>
-        {game && game[0] ? (
-          <div>{this.renderGame(game)}</div>
-        ) : (
-          <div>loading</div>
-        )}
+        {game && game[0] && <div>{this.renderGame(game)}</div>}
       </React.Fragment>
     );
   }

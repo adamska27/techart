@@ -5,7 +5,6 @@ import { fetchRecentGames } from './actions';
 import RecentGames from '../../components/RecentGames';
 
 const mapStateToProps = state => ({
-  isFetching: state.recentGames.isFetching,
   recentGames: state.recentGames.recentGames
 });
 

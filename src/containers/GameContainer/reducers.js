@@ -8,7 +8,8 @@ const initialState = {
   error: null,
   fetched: false,
   isFetching: false,
-  game: null
+  game: null,
+  lastFetch: 0
 };
 
 export const game = (state = initialState, action) => {
@@ -16,7 +17,13 @@ export const game = (state = initialState, action) => {
   case FETCH_GAME_REQUEST:
     return { ...state, isFetching: true };
   case FETCH_GAME_SUCCESS:
-    return { ...state, isFetching: false, fetched: true, game: action.json };
+    return {
+      ...state,
+      isFetching: false,
+      fetched: true,
+      game: action.json,
+      lastFetch: action.lastFetch
+    };
   case FETCH_GAME_FAILED:
     return { ...state, isFetching: false, error: action.error };
   default:
