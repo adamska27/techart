@@ -1,4 +1,5 @@
 import idx from 'idx';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -64,6 +65,9 @@ export default class GameInfos extends React.PureComponent {
     return (
       <React.Fragment>
         {game && game[0] && <div>{this.renderGame(game)}</div>}
+        <Link to={`/${this.props.match.params.gameId}/rating`}>
+          <button>évaluer</button>
+        </Link>
       </React.Fragment>
     );
   }

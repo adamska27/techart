@@ -6,6 +6,7 @@ import { popularGames } from './containers/PopularGames/reducers';
 import { recentGames } from './containers/RecentGames/reducers';
 import { userOfTheWeek } from './containers/UserOfTheWeek/reducers';
 import { latestUsers } from './containers/LatestUsers/reducers';
+import { submitRatings } from './containers/RatingsFormContainer/reducers';
 
 const reducers = combineReducers({
   account,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   navMobile,
   popularGames,
   recentGames,
+  submitRatings,
   userOfTheWeek
 });
 

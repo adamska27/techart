@@ -13,6 +13,7 @@ import Game from './pages/Game';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import PagesNotFound from './pages/PagesNotFound';
+import RatingsForm from './pages/RatingsForm';
 import SignUp from './pages/SignUp';
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/game/:gameId" component={Game} />
+                <Route path="/:gameId/rating" component={RatingsForm} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={LogIn} />
                 <Route component={PagesNotFound} />
