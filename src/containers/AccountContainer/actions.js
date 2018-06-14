@@ -31,7 +31,6 @@ export const fetchSignUp = data => async dispatch => {
   });
   if (fetchSignUp.status === 200) {
     const result = await fetchSignUp.json();
-    console.log(result);
     return dispatch(signUpSuccess(result));
   } else {
     const error = await fetchSignUp.json();

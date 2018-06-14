@@ -15,7 +15,7 @@ const initialState = {
 export const game = (state = initialState, action) => {
   switch (action.type) {
   case FETCH_GAME_REQUEST:
-    return { ...state, isFetching: true };
+    return { ...state, isFetching: true, fetched: false };
   case FETCH_GAME_SUCCESS:
     return {
       ...state,
