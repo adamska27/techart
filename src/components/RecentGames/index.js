@@ -3,20 +3,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Button from '../common/Button';
+import TitleSection from '../common/TitleSection';
+import PlaceHolder from '../common/PlaceHolderImage';
+
+const HeightPlaceHolder = 90;
+const WidthPlaceHolder = 90;
+
 const Container = styled.div`
   padding: 20px 0;
 `;
 
 const ItemContainer = styled.li`
+  border-radius: 3px;
+  box-shadow: ${({ theme }) =>
+    `0px 0px 5px 1px ${theme.color.mainColorTransparent}`};
   display: flex;
+  margin: 12px 0;
 `;
 
 const TextContainer = styled.div`
-  padding: 0 6px;
+  padding: 12px 6px;
 `;
 
 const TextElement = styled.div`
   padding-bottom: 6px;
+
+  &:first-child {
+    color: ${({ theme }) => theme.color.sideColor};
+  }
 `;
 
 const DEFAULT_LIMIT = 3;
@@ -51,7 +66,14 @@ export default class RecentGames extends React.Component {
       <React.Fragment>
         <Link key={game.id} to={`/game/${game.id}`}>
           <div>
-            <img src={game.cover ? game.cover.url : null} />
+            {game.cover ? (
+              <img src={game.cover ? game.cover.url : null} alt={game.name} />
+            ) : (
+              <PlaceHolder
+                height={HeightPlaceHolder}
+                width={WidthPlaceHolder}
+              />
+            )}
           </div>
         </Link>
         <TextContainer>
@@ -74,22 +96,33 @@ export default class RecentGames extends React.Component {
 
     return (
       <Container>
+        <TitleSection value="Les Plus Récents" />
         <ul>
-          {recentGames &&
+          {recentGames && recentGames.length ? (
             recentGames.map((game, i) => {
               if (i > limit) {
-                return;
+                return null;
               }
               return (
                 <ItemContainer key={game.id}>
                   {this.recentGamesItem(game)}
                 </ItemContainer>
               );
-            })}
+            })
+          ) : (
+            <div>A problem occurs</div>
+          )}
         </ul>
-        <button onClick={() => this.changeLimit(limit)}>
-          {limit === DEFAULT_LIMIT ? 'Voir plus' : 'Voir moins'}
-        </button>
+        <div
+          style={{ display: 'inline' }}
+          onClick={() => this.changeLimit(limit)}
+        >
+          {limit === DEFAULT_LIMIT ? (
+            <Button value="Voir plus" />
+          ) : (
+            <Button value="Voir moins" />
+          )}
+        </div>
       </Container>
     );
   }

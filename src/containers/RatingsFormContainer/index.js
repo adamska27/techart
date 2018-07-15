@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubmitRatings: (user_id, product_id, data) =>
-    dispatch(fetchSubmitRatings(user_id, product_id, data))
+  fetchSubmitRatings: (jwt, product_id, data) =>
+    dispatch(fetchSubmitRatings(jwt, product_id, data))
 });
 
 const RatingsFormContainer = connect(mapStateToProps, mapDispatchToProps)(

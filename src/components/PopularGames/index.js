@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import PlaceHolder from '../common/PlaceHolderImage';
+import TitleSection from '../common/TitleSection';
 import getBetterCover from '../../utils/getBetterCover';
+
+const HeightPlaceHolder = 210;
+const WidthPlaceHolder = 250;
 
 const Container = styled.ul`
   display: grid;
@@ -55,12 +60,14 @@ export default class PopularGames extends React.PureComponent {
   }
 
   PopularGamesItem = game => {
-    const cover = game.cover
-      ? getBetterCover(game.cover.url)
-      : 'https://img.freepik.com/icones-gratuites/point-d-39-interrogation_318-52837.jpg?size=338&ext=jpg';
+    let cover = game.cover ? getBetterCover(game.cover.url) : null;
     return (
       <Game>
-        <Cover src={cover} />
+        {cover ? (
+          <Cover src={cover} />
+        ) : (
+          <PlaceHolder height={HeightPlaceHolder} width={WidthPlaceHolder} />
+        )}
         <Title>{game.name}</Title>
       </Game>
     );
@@ -70,16 +77,19 @@ export default class PopularGames extends React.PureComponent {
     const { popularGames } = this.props;
 
     return (
-      <Container>
-        {popularGames &&
-          popularGames.map(game => {
-            return (
-              <Link key={game.id} to={`/game/${game.id}`}>
-                <li>{this.PopularGamesItem(game)}</li>
-              </Link>
-            );
-          })}
-      </Container>
+      <React.Fragment>
+        <TitleSection value="Les Plus Attendu" />
+        <Container>
+          {popularGames &&
+            popularGames.map(game => {
+              return (
+                <Link key={game.id} to={`/game/${game.id}`}>
+                  <li>{this.PopularGamesItem(game)}</li>
+                </Link>
+              );
+            })}
+        </Container>
+      </React.Fragment>
     );
   }
 }

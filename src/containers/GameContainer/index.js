@@ -4,7 +4,8 @@ import { fetchGame } from './actions';
 import GameInfos from '../../components/GameInfos';
 
 const mapStateToProps = state => ({
-  game: state.game.game
+  game: state.game.game,
+  isFetching: state.game.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({

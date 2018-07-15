@@ -1,10 +1,18 @@
-import decode from 'jwt-decode';
 import Slider from 'rc-slider';
 import styled from 'styled-components';
 import React from 'react';
 import { Redirect } from 'react-router';
 
+import Button from '../../common/Button';
+import Title from '../../common/TitleSection';
+
 import 'rc-slider/assets/index.css';
+
+const ButtonContainer = styled.div`
+  margin: 0 auto;
+  padding: 24px;
+  width: 150px;
+`;
 
 const ContainerArt = styled.div`
   display: flex;
@@ -17,12 +25,6 @@ const ContainerArt = styled.div`
 const ContainerTech = ContainerArt.extend`
   flex-direction: column;
   width: 50%;
-`;
-
-const InputStyled = styled.input`
-  height: 20px;
-  margin-bottom: 10px;
-  width: 250px;
 `;
 
 const SliderContainer = styled.div`
@@ -76,12 +78,7 @@ export default class Ratings extends React.PureComponent {
     e.preventDefault();
     const data = this.state;
     const { jwt, productId } = this.props;
-    const decodedToken = jwt ? decode(jwt) : null;
-    const result = await this.props.fetchSubmitRatings(
-      decodedToken.id,
-      productId,
-      data
-    );
+    await this.props.fetchSubmitRatings(jwt, productId, data);
     this.setState({ redirect: true });
   };
 
@@ -95,7 +92,7 @@ export default class Ratings extends React.PureComponent {
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit}>
-          <h1>ART</h1>
+          <Title value="Art" />
           <ContainerArt>
             <SliderContainer>
               <Slider
@@ -170,7 +167,7 @@ export default class Ratings extends React.PureComponent {
             </SliderContainer>
           </ContainerArt>
 
-          <h1>Tech</h1>
+          <Title value="Tech" />
           <ContainerTech>
             <SliderContainer>
               <Slider
@@ -216,7 +213,9 @@ export default class Ratings extends React.PureComponent {
               />
             </SliderContainer>
           </ContainerTech>
-          <button type="submit">Valider</button>
+          <ButtonContainer>
+            <Button type="submit" value="Valider" />
+          </ButtonContainer>
         </form>
       </React.Fragment>
     );

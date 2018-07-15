@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import GameContainer from '../../containers/GameContainer';
+import Ratings from '../../containers/Ratings';
 import Loader from '../../components/common/Loader';
 import Wraper from '../../HOC/Wraper';
 
@@ -16,7 +17,12 @@ class Game extends React.PureComponent {
     if (isFetchingGame && !fetched) {
       return <Loader />;
     }
-    return <GameContainer match={match} fetched={fetched} />;
+    return (
+      <React.Fragment>
+        <GameContainer match={match} fetched={fetched} />
+        <Ratings match={match} />
+      </React.Fragment>
+    );
   }
 }
 

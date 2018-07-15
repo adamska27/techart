@@ -16,13 +16,14 @@ export const submitRatingsSuccess = success => ({
   success
 });
 
-export const fetchSubmitRatings = (user_id, product_id, data) => dispatch => {
+export const fetchSubmitRatings = (jwt, product_id, data) => dispatch => {
   dispatch(dispatch(submitRatingsRequest));
 
-  fetch(`http://localhost:3005/rating/${user_id}/${product_id}`, {
+  fetch(`http://localhost:3005/rating/${product_id}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`
     },
     body: JSON.stringify(data)
   })

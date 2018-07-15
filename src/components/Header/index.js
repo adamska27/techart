@@ -40,7 +40,7 @@ const CrossNavMobile = styled(BtnNavMobile)`
 `;
 
 const ContainerHeader = styled.header`
-  background-color: black;
+  background: ${({ theme }) => theme.color.gradient};
   color: white;
 `;
 

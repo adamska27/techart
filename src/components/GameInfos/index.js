@@ -1,10 +1,13 @@
 import idx from 'idx';
-import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import getBetterCover from '../../utils/getBetterCover';
+import Loader from '../common/Loader';
+import media from '../../styles/media';
+import Title from '../common/TitleSection';
+import { Normal } from '../common/Text';
 
 const HeaderImageContainer = styled.div`
   background-image: url(${props => (props.cover ? props.cover : null)});
@@ -12,6 +15,21 @@ const HeaderImageContainer = styled.div`
   background-size: cover;
   height: 720px;
   width: 100%;
+
+  ${media.phone`
+    background-size: contain;
+    height: 250px;
+  `};
+`;
+
+const InfosContainer = styled.div`
+  padding: 12px;
+`;
+
+const TextContainer = styled.div`
+  margin: 0 auto;
+  padding: 12px;
+  width: 60%;
 `;
 
 export default class GameInfos extends React.PureComponent {
@@ -29,10 +47,7 @@ export default class GameInfos extends React.PureComponent {
   };
 
   componentDidMount() {
-    // check if already fetched the data
-    if (!this.props.fetched) {
-      this.props.fetchGame(this.props.match.params.gameId);
-    }
+    this.props.fetchGame(this.props.match.params.gameId);
   }
 
   renderGame = game => {
@@ -50,24 +65,36 @@ export default class GameInfos extends React.PureComponent {
     return (
       <div>
         {game && (
-          <div>
-            <HeaderImageContainer cover={cover} />
-            <div>{game[0].name}</div>
-            <div>{game[0].summary}</div>
-          </div>
+          <React.Fragment>
+            <div style={{ textAlign: 'center', textTransform: 'uppercase' }}>
+              <HeaderImageContainer cover={cover} />
+              <Title value={game[0].name} />
+            </div>
+            <InfosContainer>
+              <h3>Résumé</h3>
+              <TextContainer>
+                <Normal>{game[0].summary}</Normal>
+              </TextContainer>
+              <h3>Date de sortie</h3>
+              <TextContainer>
+                <Normal>{game[0].release_dates[0].human}</Normal>
+              </TextContainer>
+            </InfosContainer>
+          </React.Fragment>
         )}
       </div>
     );
   };
 
   render() {
-    const { game } = this.props;
+    const { game, isFetching } = this.props;
+    console.log({ game });
+    if (isFetching) {
+      return <Loader />;
+    }
     return (
       <React.Fragment>
         {game && game[0] && <div>{this.renderGame(game)}</div>}
-        <Link to={`/${this.props.match.params.gameId}/rating`}>
-          <button>évaluer</button>
-        </Link>
       </React.Fragment>
     );
   }

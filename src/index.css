@@ -51,3 +51,5 @@ input {
 	border: none;
 	outline: none;
 }
+
+button:focus {outline:0;}
