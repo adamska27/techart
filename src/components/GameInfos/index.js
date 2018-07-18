@@ -34,14 +34,12 @@ const TextContainer = styled.div`
 
 export default class GameInfos extends React.PureComponent {
   static propTypes = {
-    fetched: PropTypes.bool,
     fetchGame: PropTypes.func,
     game: PropTypes.array,
     match: PropTypes.object
   };
 
   static defaultProps = {
-    fetched: false,
     fetchGame: () => null,
     game: []
   };
@@ -50,18 +48,40 @@ export default class GameInfos extends React.PureComponent {
     this.props.fetchGame(this.props.match.params.gameId);
   }
 
+  renderInfos = (title, info) => (
+    <InfosContainer>
+      <h3>{title}</h3>
+      <TextContainer>
+        <Normal>
+          {Array.isArray(info)
+            ? info.map(i => <p>{i.name || 'N.C.'}</p>)
+            : info}
+        </Normal>
+      </TextContainer>
+    </InfosContainer>
+  );
+
   renderGame = game => {
-    let screenshotsLength = idx(game, _ => _[0].screenshots.length);
+    const artworks =
+      idx(game, _ => _[0].artworks) || idx(game, _ => _[0].screenshots);
+    let artworksLength = artworks.length || 0;
     // get a random number inferior at the sreenshots array length
-    let screenshotsNumber = Math.floor(Math.random() * screenshotsLength);
-    // use screenshotsNumber to get a random image among the screenshots available
-    const cover = idx(game, _ => _[0].screenshots.length)
-      ? getBetterCover(
-          game[0].screenshots[screenshotsNumber].url,
-          /thumb/,
-          '720p'
-        )
+    let artworksNumber = Math.floor(Math.random() * artworksLength);
+    // use artworksNumber to get a random image among the screenshots available
+    const cover = artworksLength
+      ? getBetterCover(artworks[artworksNumber].url, /thumb/, '720p')
       : null;
+
+    const developers = idx(game[0], _ => _.developers);
+    const extensions = idx(game[0], _ => _.extensions);
+    const franchises = idx(game[0], _ => _.franchises[0].name);
+    const gameModes = idx(game[0], _ => _.game_modes);
+    const genres = idx(game[0], _ => _.genres);
+    const platforms = idx(game[0], _ => _.platforms);
+    const publishers = idx(game[0], _ => _.publishers);
+    const releaseDates = idx(game[0], _ => _.release_dates[0].human);
+    const summary = idx(game[0], _ => _.summary);
+    const themes = idx(game[0], _ => _.themes);
     return (
       <div>
         {game && (
@@ -70,16 +90,16 @@ export default class GameInfos extends React.PureComponent {
               <HeaderImageContainer cover={cover} />
               <Title value={game[0].name} />
             </div>
-            <InfosContainer>
-              <h3>Résumé</h3>
-              <TextContainer>
-                <Normal>{game[0].summary}</Normal>
-              </TextContainer>
-              <h3>Date de sortie</h3>
-              <TextContainer>
-                <Normal>{game[0].release_dates[0].human}</Normal>
-              </TextContainer>
-            </InfosContainer>
+            {this.renderInfos('Résumé', summary)}
+            {this.renderInfos('Développeurs', developers)}
+            {this.renderInfos('Éditeur', publishers)}
+            {this.renderInfos('Genres', genres)}
+            {this.renderInfos('Platforme', platforms)}
+            {this.renderInfos('Extension', extensions)}
+            {this.renderInfos('Thèmes', themes)}
+            {this.renderInfos('Mode de jeu', gameModes)}
+            {this.renderInfos('Date de sortie', releaseDates)}
+            {this.renderInfos('Franchise', franchises)}
           </React.Fragment>
         )}
       </div>
@@ -87,14 +107,18 @@ export default class GameInfos extends React.PureComponent {
   };
 
   render() {
-    const { game, isFetching } = this.props;
-    console.log({ game });
-    if (isFetching) {
+    const {
+      game,
+      isFetchingGameIgdb,
+      isFetchingGame,
+      isFetchingPostGame
+    } = this.props;
+    if (isFetchingGameIgdb || isFetchingGame || isFetchingPostGame) {
       return <Loader />;
     }
     return (
       <React.Fragment>
-        {game && game[0] && <div>{this.renderGame(game)}</div>}
+        {game && game[0] !== null && <div>{this.renderGame(game)}</div>}
       </React.Fragment>
     );
   }

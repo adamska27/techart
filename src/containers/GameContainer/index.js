@@ -5,7 +5,9 @@ import GameInfos from '../../components/GameInfos';
 
 const mapStateToProps = state => ({
   game: state.game.game,
-  isFetching: state.game.isFetching
+  isFetchingGameIgdb: state.game.isFetchingGameIgdb,
+  isFetchingGame: state.game.isFetchingGame,
+  isFetchingPostGame: state.game.isFetchingPostGame
 });
 
 const mapDispatchToProps = dispatch => ({
