@@ -83,7 +83,7 @@ export default class RadarExample extends React.PureComponent {
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'transparent',
-          data: [0, 10]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
         }
       ]
     };

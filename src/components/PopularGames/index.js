@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import PlaceHolder from '../common/PlaceHolderImage';
 import TitleSection from '../common/TitleSection';
+import { H3 } from '../common/Text';
 import getBetterCover from '../../utils/getBetterCover';
 
 const HeightPlaceHolder = 210;
@@ -31,6 +32,16 @@ const Game = styled.div`
   grid-template-areas:
     'cover'
     'title';
+
+  &:hover {
+    filter: grayscale(100%);
+  }
+`;
+
+const GameTitle = styled(H3)`
+  padding: 3px 0;
+  overflow-wrap: break-word;
+  text-align: center;
 `;
 
 const Title = styled.p`
@@ -68,7 +79,7 @@ export default class PopularGames extends React.PureComponent {
         ) : (
           <PlaceHolder height={HeightPlaceHolder} width={WidthPlaceHolder} />
         )}
-        <Title>{game.name}</Title>
+        <GameTitle>{game.name}</GameTitle>
       </Game>
     );
   };
@@ -78,17 +89,22 @@ export default class PopularGames extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <TitleSection value="Les Plus Attendu" />
-        <Container>
-          {popularGames &&
-            popularGames.map(game => {
+        <TitleSection value="Les Plus Populaires" />
+        {popularGames && popularGames.length ? (
+          <Container>
+            {popularGames.map(game => {
               return (
                 <Link key={game.id} to={`/game/${game.id}`}>
                   <li>{this.PopularGamesItem(game)}</li>
                 </Link>
               );
             })}
-        </Container>
+          </Container>
+        ) : (
+          <div>
+            <p>Un problème est survenu</p>
+          </div>
+        )}
       </React.Fragment>
     );
   }

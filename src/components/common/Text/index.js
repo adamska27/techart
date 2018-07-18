@@ -5,3 +5,7 @@ export const Normal = styled.div`
   font-weight: 400;
   text-transform: initial;
 `;
+
+export const H3 = styled.div`
+  font-size: 18px;
+`;

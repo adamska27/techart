@@ -31,7 +31,7 @@ export const fetchPopularGames = () => (dispatch, getState) => {
   if (fetchOrNo) {
     dispatch(fetchPopularGamesRequest());
 
-    const apiUrl = `https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][gt]=${DATE_NOW}&filter[hypes][gt]=50&order=popularity:desc&limit=8`;
+    const apiUrl = `https://api-2445582011268.apicast.io/games/?fields=name,popularity,cover&filter[first_release_date][lte]=${DATE_NOW}&filter[hypes][gt]=50&order=popularity:desc&limit=8`;
 
     fetchIgdbApi(apiUrl)
       .then(

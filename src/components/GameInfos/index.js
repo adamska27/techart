@@ -55,7 +55,7 @@ export default class GameInfos extends React.PureComponent {
         <Normal>
           {Array.isArray(info)
             ? info.map(i => <p>{i.name || 'N.C.'}</p>)
-            : info}
+            : info ? info : 'N.C.'}
         </Normal>
       </TextContainer>
     </InfosContainer>
