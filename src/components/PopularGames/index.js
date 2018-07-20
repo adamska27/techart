@@ -24,6 +24,21 @@ const Container = styled.ul`
 
 const Cover = styled.img`
   grid-area: cover;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+
+  &:hover {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+`;
+
+const CoverContainer = styled.div`
+  height: 250px;
+  overflow: hidden;
+  width: 100%;
 `;
 
 const Game = styled.div`
@@ -74,11 +89,13 @@ export default class PopularGames extends React.PureComponent {
     let cover = game.cover ? getBetterCover(game.cover.url) : null;
     return (
       <Game>
-        {cover ? (
-          <Cover src={cover} />
-        ) : (
-          <PlaceHolder height={HeightPlaceHolder} width={WidthPlaceHolder} />
-        )}
+        <CoverContainer>
+          {cover ? (
+            <Cover src={cover} />
+          ) : (
+            <PlaceHolder height={HeightPlaceHolder} width={WidthPlaceHolder} />
+          )}
+        </CoverContainer>
         <GameTitle>{game.name}</GameTitle>
       </Game>
     );

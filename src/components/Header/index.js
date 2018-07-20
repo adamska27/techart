@@ -1,3 +1,4 @@
+import idx from 'idx';
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -66,6 +67,10 @@ const Logo = styled.div`
   `};
 `;
 
+const Logout = styled.li`
+  cursor: pointer;
+`;
+
 const MainNav = styled.ul`
   display: flex;
   grid-area: MainNav;
@@ -99,6 +104,8 @@ export default class Header extends React.Component {
   render() {
     const { jwt, navMobile } = this.props;
     const decodedToken = jwt ? decode(jwt) : null;
+    const id = idx(decodedToken, _ => _.id);
+    console.log({ id });
     return (
       <ContainerHeader>
         <ContainerNav>
@@ -124,7 +131,7 @@ export default class Header extends React.Component {
             <Link to="/members">
               <li>membres</li>
             </Link>
-            <Link to="/mygames">
+            <Link to="/collection">
               <li>mes jeux</li>
             </Link>
           </MainNav>
@@ -132,8 +139,10 @@ export default class Header extends React.Component {
             {/* check if there is a decodeToken and display the username */}
             {decodedToken && decodedToken.userName ? (
               <React.Fragment>
-                <li>{decodedToken.userName}</li>
-                <li onClick={this.logout}>déconnexion</li>
+                <Link to={`/user/${id}`}>
+                  <li>{decodedToken.userName}</li>
+                </Link>
+                <Logout onClick={this.logout}>déconnexion</Logout>
               </React.Fragment>
             ) : (
               <React.Fragment>
