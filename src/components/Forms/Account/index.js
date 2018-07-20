@@ -1,5 +1,7 @@
-import React from 'react';
+import idx from 'idx';
 import PropTypes from 'prop-types';
+import React from 'react';
+import ReactFilestack from 'filestack-react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -15,7 +17,8 @@ export default class Account extends React.Component {
     lastName: '',
     userName: '',
     email: '',
-    password: ''
+    password: '',
+    profilePicture: null
   };
 
   static propTypes = {
@@ -49,8 +52,20 @@ export default class Account extends React.Component {
     template === 'signup' ? fetchSignUp(data) : fetchLogin(data);
   };
 
+  onSuccess = result => {
+    const url = idx(result, _ => _.filesUploaded[0].url);
+    this.setState({ profilePicture: url });
+  };
+
   render() {
     const { login, register, template } = this.props;
+    const options = {
+      accept: 'image/*',
+      maxFiles: 1,
+      storeTo: {
+        location: 's3'
+      }
+    };
     // redirect when the user finish the inscription
     if (register && template === 'signup') {
       return <Redirect to="/login" />;
@@ -95,6 +110,27 @@ export default class Account extends React.Component {
                   value={this.state.value}
                 />
               </div>
+              <ReactFilestack
+                apikey={process.env.REACT_APP_FILESTACK_KEY}
+                mode={'pick'}
+                options={options}
+                onSuccess={this.onSuccess}
+                render={({ onPick }) => (
+                  <div>
+                    <strong>photo de profil: </strong>
+                    <button onClick={onPick}>Pick</button>
+                  </div>
+                )}
+              />
+              {this.state.profilePicture && (
+                <div>
+                  <img
+                    style={{ width: '150px', height: '150px' }}
+                    src={this.state.profilePicture}
+                    alt="profile-picture"
+                  />
+                </div>
+              )}
             </React.Fragment>
           )}
 
