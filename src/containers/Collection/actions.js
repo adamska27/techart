@@ -23,7 +23,7 @@ export const fetchCollection = token => async dispatch => {
 
   dispatch(fetchCollectionRequest());
 
-  const collection = await fetch(url, {
+  await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`

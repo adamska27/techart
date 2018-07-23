@@ -23,7 +23,7 @@ export const fetchProfile = token => async (dispatch, state) => {
 
   const url = 'http://localhost:3005/user/profile';
 
-  const result = await fetch(url, {
+  await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`

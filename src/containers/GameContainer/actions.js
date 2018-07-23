@@ -91,7 +91,7 @@ export const fetchGame = id => async dispatch => {
 
     // post the result in our db
     dispatch(fetchPostGameRequest());
-    const postResult = await fetch(`http://localhost:3005/product/${id}`, {
+    await fetch(`http://localhost:3005/product/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

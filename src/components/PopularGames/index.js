@@ -29,9 +29,9 @@ const Cover = styled.img`
   transition: all 0.3s;
 
   &:hover {
-    -moz-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -moz-transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
   }
 `;
 
@@ -56,13 +56,6 @@ const Game = styled.div`
 const GameTitle = styled(H3)`
   padding: 3px 0;
   overflow-wrap: break-word;
-  text-align: center;
-`;
-
-const Title = styled.p`
-  grid-area: title;
-  font-size: 11px;
-  font-weight: normal;
   text-align: center;
 `;
 
