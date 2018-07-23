@@ -1,21 +1,33 @@
+import idx from 'idx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import Error from '../common/Error';
+import TitleAside from '../common/TitleAside';
+import UserIcon from '../UserIcon';
+
 const Container = styled.div`
-  border: 1px black solid;
   padding: 12px;
+`;
+
+const Title = styled(TitleAside)`
+  text-align: center;
 `;
 
 export default class UserOfTheWeek extends React.Component {
   static propTypes = {
     fetchUserOfTheWeek: PropTypes.func,
-    userOfTheWeek: PropTypes.array
+    userOfTheWeek: PropTypes.shape({
+      id: PropTypes.number,
+      profilePicture: PropTypes.string,
+      userName: PropTypes.string
+    })
   };
 
   static defaultProps = {
     fetchUserOfTheWeek: () => null,
-    userOfTheWeek: []
+    userOfTheWeek: {}
   };
 
   componentDidMount() {
@@ -28,11 +40,22 @@ export default class UserOfTheWeek extends React.Component {
 
   render() {
     const { userOfTheWeek } = this.props;
+    const id = idx(userOfTheWeek, _ => _.id);
+    const userName = idx(userOfTheWeek, _ => _.userName);
+    const profilePicture = idx(userOfTheWeek, _ => _.profilePicture);
+
     return (
       <Container>
-        <h1>User of the week</h1>
-        {userOfTheWeek &&
-          userOfTheWeek[0] && <div>{userOfTheWeek[0].userName}</div>}
+        <Title value={`L'utilisateur de la semaine`} />
+        {userOfTheWeek && id ? (
+          <UserIcon
+            id={id}
+            profilePicture={profilePicture}
+            userName={userName}
+          />
+        ) : (
+          <Error />
+        )}
       </Container>
     );
   }

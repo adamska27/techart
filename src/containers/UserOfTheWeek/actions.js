@@ -1,19 +1,24 @@
 import {
-  FETCH_USER_FAILED,
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS
+  FETCH_USER_OF_THE_WEEK_FAILED,
+  FETCH_USER_OF_THE_WEEK_REQUEST,
+  FETCH_USER_OF_THE_WEEK_SUCCESS
 } from './constants';
 
 import fetchAgain from '../../utils/fetchAgain';
 
 const DATE_NOW = Date.now();
 
-export const fetchUserFailed = error => ({ type: FETCH_USER_FAILED, error });
+export const fetchUserOfTheWeekFailed = error => ({
+  type: FETCH_USER_OF_THE_WEEK_FAILED,
+  error
+});
 
-export const fetchUserRequest = () => ({ type: FETCH_USER_REQUEST });
+export const fetchUserOfTheWeekRequest = () => ({
+  type: FETCH_USER_OF_THE_WEEK_REQUEST
+});
 
-export const fetchUserSuccess = (user, lastFetch) => ({
-  type: FETCH_USER_SUCCESS,
+export const fetchUserOfTheWeekSuccess = (user, lastFetch) => ({
+  type: FETCH_USER_OF_THE_WEEK_SUCCESS,
   user,
   lastFetch
 });
@@ -23,18 +28,18 @@ export const fetchUserOfTheWeek = () => async (dispatch, getState) => {
   const fetchOrNo = fetchAgain(timeSinceLastFetch);
 
   if (fetchOrNo) {
-    dispatch(fetchUserRequest());
+    dispatch(fetchUserOfTheWeekRequest());
 
     try {
-      const user = await fetch('http://localhost:3005/user/all', {
+      const user = await fetch('http://localhost:3005/user/best', {
         headers: {
           'Content-Type': 'application/json'
         }
       });
       const result = await user.json();
-      dispatch(fetchUserSuccess(result, DATE_NOW));
+      dispatch(fetchUserOfTheWeekSuccess(result, DATE_NOW));
     } catch (err) {
-      dispatch(fetchUserFailed(err));
+      dispatch(fetchUserOfTheWeekFailed(err));
     }
   }
 };
