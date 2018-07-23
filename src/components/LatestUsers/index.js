@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import TitleAside from '../common/TitleAside';
+
 const Container = styled.div`
-  border: 1px black solid;
   padding: 12px;
+  text-align: center;
 `;
 
 export default class LatestUser extends React.Component {
@@ -30,14 +33,17 @@ export default class LatestUser extends React.Component {
     const { latestUsers } = this.props;
     return (
       <Container>
-        <h1>Derniers inscris: </h1>
+        <TitleAside value={`Derniers inscris: `} />
         {latestUsers &&
           latestUsers.length &&
           latestUsers.map(u => {
             return (
-              <div key={u.id}>
-                <p>{u.userName}</p>
-              </div>
+              <Link key={u.id} to={`/user/${u.id}`}>
+                <div>
+                  <img src={`${u.profilePicture}`} alt="profile_picture" />
+                  <p>{u.userName}</p>
+                </div>
+              </Link>
             );
           })}
       </Container>

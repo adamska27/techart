@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Slider from 'rc-slider';
 import styled from 'styled-components';
 import React from 'react';
@@ -54,6 +55,11 @@ const marks2 = {
 };
 
 export default class Ratings extends React.PureComponent {
+  static propTypes = {
+    error: PropTypes.object,
+    jwt: PropTypes.string.isRequired
+  };
+
   state = {
     story: 5,
     feeling: 5,

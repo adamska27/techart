@@ -1,12 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Loader from '../common/Loader';
 
 export default class Collection extends React.PureComponent {
+  static = {
+    collection: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    token: PropTypes.string.isRequired
+  };
+
   componentDidMount() {
     const { fetchCollection, token } = this.props;
     fetchCollection(token);
   }
+
   render() {
     const { collection, isFetching } = this.props;
     if (isFetching) return <Loader />;

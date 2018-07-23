@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Radar } from 'react-chartjs-2';
 import React from 'react';
 import styled from 'styled-components';
@@ -18,6 +19,14 @@ const Container = styled.div`
 `;
 
 export default class RadarExample extends React.PureComponent {
+  static = {
+    fetchUserRatings: PropTypes.func.isRequired,
+    fetchRatingsAverage: PropTypes.func.isRequired,
+    jwt: PropTypes.string.isRequired,
+    ratingsAverage: PropTypes.array.isRequired,
+    userRatings: PropTypes.array.isRequired
+  };
+
   componentDidMount() {
     const { jwt, fetchUserRatings, fetchRatingsAverage, match } = this.props;
     const { gameId } = match.params;
@@ -26,6 +35,7 @@ export default class RadarExample extends React.PureComponent {
     }
     fetchRatingsAverage(gameId);
   }
+
   render() {
     const { jwt, userRatings, ratingsAverage } = this.props;
     const data = {
@@ -91,17 +101,17 @@ export default class RadarExample extends React.PureComponent {
       <Container>
         {(userRatings && userRatings.length) ||
         (ratingsAverage && ratingsAverage.length) ? (
-            <div>
-              <div style={{ width: '100%', height: '500px' }}>
-                <Radar
-                  data={data}
-                  height={200}
-                  width={200}
-                  options={{ maintainAspectRatio: false }}
-                />
-              </div>
+          <div>
+            <div style={{ width: '100%', height: '500px' }}>
+              <Radar
+                data={data}
+                height={200}
+                width={200}
+                options={{ maintainAspectRatio: false }}
+              />
             </div>
-          ) : null}
+          </div>
+        ) : null}
         {!userRatings || (userRatings && !Object.keys(userRatings).length) ? (
           <Link
             to={!jwt ? '/login' : `/${this.props.match.params.gameId}/rating`}

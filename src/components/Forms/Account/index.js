@@ -23,11 +23,11 @@ export default class Account extends React.Component {
 
   static propTypes = {
     error: PropTypes.string,
-    fetchSignUp: PropTypes.func,
-    fetchLogin: PropTypes.func,
-    isFetching: PropTypes.bool,
-    login: PropTypes.bool,
-    register: PropTypes.bool,
+    fetchLogin: PropTypes.func.isRequired,
+    fetchSignUp: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    login: PropTypes.bool.isRequired,
+    register: PropTypes.bool.isRequired,
     template: PropTypes.string
   };
 
@@ -61,6 +61,7 @@ export default class Account extends React.Component {
     const { login, register, template } = this.props;
     const options = {
       accept: 'image/*',
+      imageDim: [100, 100],
       maxFiles: 1,
       storeTo: {
         location: 's3'
@@ -125,9 +126,9 @@ export default class Account extends React.Component {
               {this.state.profilePicture && (
                 <div>
                   <img
-                    style={{ width: '150px', height: '150px' }}
+                    style={{ width: '100px', height: '100px' }}
                     src={this.state.profilePicture}
-                    alt="profile-picture"
+                    alt="profile"
                   />
                 </div>
               )}

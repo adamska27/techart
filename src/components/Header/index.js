@@ -84,9 +84,10 @@ const MainNav = styled.ul`
 
 export default class Header extends React.Component {
   static propTypes = {
-    closeNavMobile: PropTypes.func,
-    navMobile: PropTypes.bool,
-    openNavMobile: PropTypes.func
+    closeNavMobile: PropTypes.func.isRequired,
+    jwt: PropTypes.string,
+    navMobile: PropTypes.bool.isRequired,
+    openNavMobile: PropTypes.func.isRequired
   };
 
   onBtnNavMobileClick = () => {
@@ -105,7 +106,6 @@ export default class Header extends React.Component {
     const { jwt, navMobile } = this.props;
     const decodedToken = jwt ? decode(jwt) : null;
     const id = idx(decodedToken, _ => _.id);
-    console.log({ id });
     return (
       <ContainerHeader>
         <ContainerNav>
