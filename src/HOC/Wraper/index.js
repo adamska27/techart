@@ -6,6 +6,7 @@ import media from '../../styles/media';
 
 import { closeNavMobile } from '../../containers/Header/actions';
 
+import Footer from '../../components/Footer';
 import GridMobile from '../../components/GridMobile';
 import NavMobile from '../../components/NavMobile';
 
@@ -40,6 +41,7 @@ const Wraper = Component => {
           <ContainerPage navMobile={navMobile}>
             <Component {...this.props} />
           </ContainerPage>
+          <Footer />
         </GridMobile>
       );
     }

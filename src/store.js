@@ -21,7 +21,8 @@ store.subscribe(
   // throttle able to not called saveState function every time the store update
   throttle(() => {
     saveState({
-      account: store.getState().account
+      account: store.getState().account,
+      game: store.getState().game
     });
   }, 1000)
 );

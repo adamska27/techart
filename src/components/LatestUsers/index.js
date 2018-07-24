@@ -1,13 +1,19 @@
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
 import TitleAside from '../common/TitleAside';
+import UserIcon from '../UserIcon';
 
 const Container = styled.div`
   padding: 12px;
   text-align: center;
+`;
+
+const UserContainer = styled.div`
+  align-items: center;
+  display: flex;
+  overflow-x: scroll;
 `;
 
 export default class LatestUser extends React.Component {
@@ -34,18 +40,20 @@ export default class LatestUser extends React.Component {
     return (
       <Container>
         <TitleAside value={`Derniers inscris: `} />
-        {latestUsers &&
-          latestUsers.length &&
-          latestUsers.map(u => {
-            return (
-              <Link key={u.id} to={`/user/${u.id}`}>
-                <div>
-                  <img src={`${u.profilePicture}`} alt="profile_picture" />
-                  <p>{u.userName}</p>
-                </div>
-              </Link>
-            );
-          })}
+        <UserContainer>
+          {latestUsers &&
+            latestUsers.length &&
+            latestUsers.map(u => {
+              return (
+                <UserIcon
+                  id={u.id}
+                  key={u.id}
+                  profilePicture={u.profilePicture}
+                  userName={u.userName}
+                />
+              );
+            })}
+        </UserContainer>
       </Container>
     );
   }

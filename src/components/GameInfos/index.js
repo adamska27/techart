@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import getBetterCover from '../../utils/getBetterCover';
+import { gameType } from '../../PropTypes';
+
 import Loader from '../common/Loader';
 import media from '../../styles/media';
 import Title from '../common/TitleSection';
@@ -35,7 +37,7 @@ const TextContainer = styled.div`
 export default class GameInfos extends React.PureComponent {
   static propTypes = {
     fetchGame: PropTypes.func,
-    game: PropTypes.array,
+    game: PropTypes.arrayOf(gameType).isRequired,
     match: PropTypes.object
   };
 
@@ -54,7 +56,9 @@ export default class GameInfos extends React.PureComponent {
       <TextContainer>
         <Normal>
           {Array.isArray(info)
-            ? info.map(i => <p key={i.name}>{i.name || 'N.C.'}</p>)
+            ? info.map((i, index) => (
+                <p key={`${i.name}_${index}`}>{i.name || 'N.C.'}</p>
+              ))
             : info ? info : 'N.C.'}
         </Normal>
       </TextContainer>
