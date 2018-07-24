@@ -49,7 +49,7 @@ export const gameType = PropTypes.shape({
   developers: PropTypes.arrayOf(
     PropTypes.oneOfType([basicType, exceptionNumberType])
   ).isRequired,
-  keywords: PropTypes.arrayOf(basicType).isRequired,
+  keywords: PropTypes.arrayOf(basicType),
   themes: PropTypes.arrayOf(basicType).isRequired,
   platforms: PropTypes.arrayOf(basicType).isRequired,
   // need to precise shape expansions
@@ -57,6 +57,6 @@ export const gameType = PropTypes.shape({
   artworks: PropTypes.arrayOf(screenshotType),
   videos: PropTypes.arrayOf(videoType).isRequired,
   publishers: PropTypes.arrayOf(basicType).isRequired,
-  createdAt: PropTypes.string.isRequired,
-  updatedAt: PropTypes.string.isRequired
+  createdAt: PropTypes.string,
+  updatedAt: PropTypes.string
 });

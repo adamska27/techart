@@ -45,7 +45,6 @@ export default class Review extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props);
     const { isFetching, review, game } = this.props;
     const check = !!Object.values(review).length;
 

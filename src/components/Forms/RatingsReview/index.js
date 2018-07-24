@@ -5,6 +5,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 
 import Button from '../../common/Button';
+import ReviewEditor from '../../ReviewEditor';
 import Title from '../../common/TitleSection';
 
 import 'rc-slider/assets/index.css';
@@ -54,23 +55,26 @@ const marks2 = {
   10: '10'
 };
 
-export default class Ratings extends React.PureComponent {
+export default class RatingsReview extends React.PureComponent {
   static propTypes = {
     error: PropTypes.object,
     jwt: PropTypes.string.isRequired
   };
 
   state = {
-    story: 5,
-    feeling: 5,
-    levelDesign: 5,
-    artDesign: 5,
-    originality: 5,
-    soundDesign: 5,
-    textures: 5,
-    framerate: 5,
-    physics: 5,
-    lighting: 5,
+    ratings: {
+      story: 5,
+      feeling: 5,
+      levelDesign: 5,
+      artDesign: 5,
+      originality: 5,
+      soundDesign: 5,
+      textures: 5,
+      framerate: 5,
+      physics: 5,
+      lighting: 5
+    },
+    review: null,
     redirect: false
   };
 
@@ -82,17 +86,21 @@ export default class Ratings extends React.PureComponent {
 
   onSubmit = async e => {
     e.preventDefault();
-    const data = this.state;
-    const { jwt, productId } = this.props;
-    await this.props.fetchSubmitRatings(jwt, productId, data);
+    const { ratings, review } = this.state;
+    const { fetchSubmitRatingsReview, jwt, productId } = this.props;
+    await fetchSubmitRatingsReview(jwt, productId, ratings, review);
     this.setState({ redirect: true });
+  };
+
+  onReviewChange = value => {
+    this.setState({ review: value });
   };
 
   render() {
     const { redirect } = this.state;
-
+    const { productId } = this.props;
     if (redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to={`/game/${productId}`} />;
     }
 
     return (
@@ -219,6 +227,7 @@ export default class Ratings extends React.PureComponent {
               />
             </SliderContainer>
           </ContainerTech>
+          <ReviewEditor onChange={this.onReviewChange} />
           <ButtonContainer>
             <Button type="submit" value="Valider" />
           </ButtonContainer>

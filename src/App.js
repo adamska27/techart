@@ -14,7 +14,7 @@ import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import PagesNotFound from './pages/PagesNotFound';
 import Profile from './pages/Profile';
-import RatingsForm from './pages/RatingsForm';
+import RatingsReviewForm from './pages/RatingsReviewForm';
 import Review from './pages/Review';
 import ReviewsAll from './pages/ReviewsAll';
 import SignUp from './pages/SignUp';
@@ -30,7 +30,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/game/:gameId" component={Game} />
-                <Route path="/:gameId/rating" component={RatingsForm} />
+                <Route path="/:gameId/rating" component={RatingsReviewForm} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={LogIn} />
                 <Route path="/user/:id" component={Profile} />
