@@ -10,6 +10,8 @@ export const basicType = PropTypes.shape({
   name: PropTypes.string.isRequired
 });
 
+export const exceptionNumberType = PropTypes.number.isRequired;
+
 export const videoType = PropTypes.shape({
   name: PropTypes.string.isRequired,
   video_id: PropTypes.string.isRequired
@@ -44,13 +46,15 @@ export const gameType = PropTypes.shape({
   genres: PropTypes.arrayOf(basicType).isRequired,
   franchises: PropTypes.arrayOf(basicType),
   game_modes: PropTypes.arrayOf(basicType).isRequired,
-  developers: PropTypes.arrayOf(basicType).isRequired,
+  developers: PropTypes.arrayOf(
+    PropTypes.oneOfType([basicType, exceptionNumberType])
+  ).isRequired,
   keywords: PropTypes.arrayOf(basicType).isRequired,
   themes: PropTypes.arrayOf(basicType).isRequired,
   platforms: PropTypes.arrayOf(basicType).isRequired,
   // need to precise shape expansions
   expansions: PropTypes.arrayOf(PropTypes.object),
-  artworks: PropTypes.arrayOf(screenshotType).isRequired,
+  artworks: PropTypes.arrayOf(screenshotType),
   videos: PropTypes.arrayOf(videoType).isRequired,
   publishers: PropTypes.arrayOf(basicType).isRequired,
   createdAt: PropTypes.string.isRequired,
