@@ -9,6 +9,8 @@ import { popularGames } from './containers/PopularGames/reducers';
 import { profile } from './containers/Profile/reducers';
 import { ratings } from './containers/Ratings/reducers';
 import { recentGames } from './containers/RecentGames/reducers';
+import { review } from './containers/Review/reducers';
+import { reviewsAll } from './containers/ReviewsAll/reducers';
 import { submitRatings } from './containers/RatingsFormContainer/reducers';
 import { userOfTheWeek } from './containers/UserOfTheWeek/reducers';
 
@@ -22,6 +24,8 @@ const reducers = combineReducers({
   profile,
   ratings,
   recentGames,
+  review,
+  reviewsAll,
   submitRatings,
   userOfTheWeek
 });
