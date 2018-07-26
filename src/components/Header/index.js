@@ -10,6 +10,8 @@ import media from '../../styles/media';
 import btnNavMobile from '../../static/btnNavMobile.svg';
 import crossNavMobile from '../../static/crossNavMobile.svg';
 
+import Search from '../../containers/Search';
+
 const AccountNav = styled.ul`
   display: flex;
   grid-area: AccountNav;
@@ -48,9 +50,11 @@ const ContainerHeader = styled.header`
 const ContainerNav = styled.nav`
   align-items: center;
   display: grid;
-  grid-template-areas: 'Logo MainNav AccountNav';
+  grid-template-areas:
+    'Logo MainNav AccountNav'
+    'SearchBar SearchBar SearchBar';
   grid-template-columns: 1fr 4fr 2fr;
-  grid-template-rows: 40px;
+  grid-template-rows: 40px 40px;
   padding: 10px;
 
   ${media.tablet`
@@ -80,6 +84,12 @@ const MainNav = styled.ul`
   ${media.tablet`
     display: none;
   `};
+`;
+
+const SearchBarContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  grid-column: 1 / 4;
 `;
 
 export default class Header extends React.Component {
@@ -155,6 +165,9 @@ export default class Header extends React.Component {
               </React.Fragment>
             )}
           </AccountNav>
+          <SearchBarContainer>
+            <Search />
+          </SearchBarContainer>
         </ContainerNav>
       </ContainerHeader>
     );

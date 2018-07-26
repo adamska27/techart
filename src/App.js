@@ -17,6 +17,7 @@ import Profile from './pages/Profile';
 import RatingsReviewForm from './pages/RatingsReviewForm';
 import Review from './pages/Review';
 import ReviewsAll from './pages/ReviewsAll';
+import SearchResult from './pages/SearchResult';
 import SignUp from './pages/SignUp';
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
                   path="/review/product/:productId"
                   component={ReviewsAll}
                 />
+                <Route path="/search/:keyword" component={SearchResult} />
                 <Route component={PagesNotFound} />
               </Switch>
             </React.Fragment>
