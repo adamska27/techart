@@ -22,7 +22,8 @@ store.subscribe(
   throttle(() => {
     saveState({
       account: store.getState().account,
-      game: store.getState().game
+      game: store.getState().game,
+      search: store.getState().search
     });
   }, 1000)
 );

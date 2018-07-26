@@ -16,6 +16,10 @@ const ButtonContainer = styled.div`
   width: 150px;
 `;
 
+const ButtonStyled = styled(Button)`
+  padding: 12px 6px;
+`;
+
 const ContainerArt = styled.div`
   display: flex;
   height: 350px;
@@ -79,8 +83,12 @@ export default class RatingsReview extends React.PureComponent {
   };
 
   onChange = (value, name) => {
+    const ratings = this.state.ratings;
     this.setState({
-      [name]: value
+      ratings: {
+        ...ratings,
+        [name]: value
+      }
     });
   };
 
@@ -99,6 +107,7 @@ export default class RatingsReview extends React.PureComponent {
   render() {
     const { redirect } = this.state;
     const { productId } = this.props;
+
     if (redirect) {
       return <Redirect to={`/game/${productId}`} />;
     }
@@ -229,7 +238,7 @@ export default class RatingsReview extends React.PureComponent {
           </ContainerTech>
           <ReviewEditor onChange={this.onReviewChange} />
           <ButtonContainer>
-            <Button type="submit" value="Valider" />
+            <ButtonStyled type="submit" value="Valider" />
           </ButtonContainer>
         </form>
       </React.Fragment>

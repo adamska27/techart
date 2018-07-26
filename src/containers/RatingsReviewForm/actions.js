@@ -46,7 +46,7 @@ export const fetchSubmitRatingsReview = (
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt}`
     },
-    body: JSON.stringify(ratings)
+    body: JSON.stringify({ ratings })
   })
     .then(res => res.json())
     .then(ratings => dispatch(submitRatingsSuccess(ratings)))
