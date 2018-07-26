@@ -15,7 +15,7 @@ const Image = styled.img`
 `;
 
 const ImageContainer = styled.div`
-  height: 200px;
+  height: 350px;
   width: 100%;
 `;
 

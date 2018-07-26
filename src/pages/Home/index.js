@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import media from '../../styles/media';
 
-import Wraper from '../../HOC/Wraper';
 import Loader from '../../components/common/Loader';
 import LatestUsers from '../../containers/LatestUsers';
 import PopularGamesContainer from '../../containers/PopularGames';
 import RecentGamesContainer from '../../containers/RecentGames';
 import UserOfTheWeek from '../../containers/UserOfTheWeek';
+import Wraper from '../../HOC/Wraper';
 
 // need to get all the isFetching info to display or not the loader on the page
 const mapStateToProps = state => ({

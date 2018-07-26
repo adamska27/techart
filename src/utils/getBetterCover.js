@@ -1,4 +1,4 @@
-const getBetterImage = (
+const getBetterCover = (
   url,
   previousSize = /thumb/,
   nextSize = 'cover_uniform'
@@ -6,7 +6,7 @@ const getBetterImage = (
   return url.replace(previousSize, nextSize);
 };
 
-export default getBetterImage;
+export default getBetterCover;
 
 //-------- formats ---------//
 

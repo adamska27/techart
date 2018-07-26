@@ -13,6 +13,10 @@ const ButtonContainer = styled.div`
   width: 200px;
 `;
 
+const ButtonStyled = styled(Button)`
+  padding: 12px 6px;
+`;
+
 export default class ReviewsAll extends React.PureComponent {
   static propTypes = {
     error: PropTypes.object,
@@ -47,7 +51,7 @@ export default class ReviewsAll extends React.PureComponent {
                 />
                 <Link to={`/review/${review.id}`}>
                   <ButtonContainer>
-                    <Button value="Voir plus" />
+                    <ButtonStyled value="Voir plus" />
                   </ButtonContainer>
                 </Link>
               </div>
@@ -61,7 +65,7 @@ export default class ReviewsAll extends React.PureComponent {
             </p>
             <Link to={`/${match.params.productId}/rating`}>
               <ButtonContainer>
-                <Button value="évaluer" />
+                <ButtonStyled value="évaluer" />
               </ButtonContainer>
             </Link>
           </div>

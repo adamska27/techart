@@ -12,6 +12,10 @@ const ButtonContainer = styled.div`
   width: 200px;
 `;
 
+const ButtonStyled = styled(Button)`
+  padding: 12px 6px;
+`;
+
 class Game extends React.PureComponent {
   render() {
     const { fetched, match } = this.props;
@@ -22,7 +26,7 @@ class Game extends React.PureComponent {
         <Ratings match={match} />
         <Link to={`/review/product/${match.params.gameId}`}>
           <ButtonContainer>
-            <Button value="Voir les critiques" />
+            <ButtonStyled value="Voir les critiques" />
           </ButtonContainer>
         </Link>
       </React.Fragment>

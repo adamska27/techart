@@ -13,6 +13,10 @@ const ButtonContainer = styled.div`
   width: 150px;
 `;
 
+const ButtonStyled = styled(Button)`
+  padding: 12px 6px;
+`;
+
 const Container = styled.div`
   margin: 0 auto;
   width: 80%;
@@ -117,7 +121,7 @@ export default class RadarExample extends React.PureComponent {
             to={!jwt ? '/login' : `/${this.props.match.params.gameId}/rating`}
           >
             <ButtonContainer>
-              <Button value="évaluer" />
+              <ButtonStyled value="évaluer" />
             </ButtonContainer>
           </Link>
         ) : null}

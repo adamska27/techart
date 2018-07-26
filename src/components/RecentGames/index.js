@@ -10,6 +10,10 @@ import PlaceHolder from '../common/PlaceHolderImage';
 const HeightPlaceHolder = 90;
 const WidthPlaceHolder = 90;
 
+const ButtonStyled = styled(Button)`
+  padding: 12px 6px;
+`;
+
 const Container = styled.div`
   padding: 20px 0;
 `;
@@ -113,14 +117,11 @@ export default class RecentGames extends React.Component {
             <div>A problem occurs</div>
           )}
         </ul>
-        <div
-          style={{ display: 'inline' }}
-          onClick={() => this.changeLimit(limit)}
-        >
+        <div onClick={() => this.changeLimit(limit)}>
           {limit === DEFAULT_LIMIT ? (
-            <Button value="Voir plus" />
+            <ButtonStyled value="Voir plus" />
           ) : (
-            <Button value="Voir moins" />
+            <ButtonStyled value="Voir moins" />
           )}
         </div>
       </Container>

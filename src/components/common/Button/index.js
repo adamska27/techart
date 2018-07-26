@@ -7,7 +7,6 @@ const ButtonStyled = styled.button`
   border-radius: 6px;
   color: black;
   cursor: pointer;
-  padding: 12px 6px;
   box-shadow: ${({ theme }) =>
     `0px 0px 5px 1px ${theme.color.mainColorTransparent}`};
   height: 100%;
@@ -33,9 +32,14 @@ export default class Button extends React.PureComponent {
   };
 
   render() {
-    const { backgroundColor, color, type, value } = this.props;
+    const { className, backgroundColor, color, type, value } = this.props;
     return (
-      <ButtonStyled backgroundColor={backgroundColor} color={color} type={type}>
+      <ButtonStyled
+        backgroundColor={backgroundColor}
+        className={className}
+        color={color}
+        type={type}
+      >
         {value}
       </ButtonStyled>
     );
