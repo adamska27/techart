@@ -10,6 +10,7 @@ import Loader from '../common/Loader';
 import media from '../../styles/media';
 import Title from '../common/TitleSection';
 import { Normal } from '../common/Text';
+import YoutubePlayer from '../YoutubePlayer';
 
 const HeaderImageContainer = styled.div`
   background-image: url(${props => (props.cover ? props.cover : null)});
@@ -117,12 +118,15 @@ export default class GameInfos extends React.PureComponent {
       isFetchingGame,
       isFetchingPostGame
     } = this.props;
+    const videoId = idx(game, _ => _[0].videos[0].video_id);
+
     if (isFetchingGameIgdb || isFetchingGame || isFetchingPostGame) {
       return <Loader />;
     }
     return (
       <React.Fragment>
         {game && game[0] !== null && <div>{this.renderGame(game)}</div>}
+        <YoutubePlayer videoId={videoId} />
       </React.Fragment>
     );
   }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -26,7 +27,9 @@ export default class Collection extends React.PureComponent {
             collection.map(game => {
               return (
                 <div key={game.name}>
-                  <p>{game.name}</p>
+                  <Link to={`/game/${game.id}`}>
+                    <p>{game.name}</p>
+                  </Link>
                   <img
                     src={game.artworks ? `${game.artworks[0].url}` : null}
                     alt={`artworks_${game.name}`}
