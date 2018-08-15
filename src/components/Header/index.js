@@ -45,6 +45,10 @@ const CrossNavMobile = styled(BtnNavMobile)`
 const ContainerHeader = styled.header`
   background: ${({ theme }) => theme.color.gradient};
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 `;
 
 const ContainerNav = styled.nav`
@@ -147,10 +151,10 @@ export default class Header extends React.Component {
           </MainNav>
           <AccountNav>
             {/* check if there is a decodeToken and display the username */}
-            {decodedToken && decodedToken.userName ? (
+            {decodedToken ? (
               <React.Fragment>
                 <Link to={`/user/${id}`}>
-                  <li>{decodedToken.userName}</li>
+                  <li>Profil</li>
                 </Link>
                 <Logout onClick={this.logout}>déconnexion</Logout>
               </React.Fragment>

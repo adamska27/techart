@@ -19,8 +19,8 @@ const UserName = styled.div`
 
 export default class UserIcon extends React.PureComponent {
   static propTypes = {
-    id: PropTypes.number.isRequired,
-    userName: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    userName: PropTypes.string,
     profilePicture: PropTypes.string.isRequired
   };
 

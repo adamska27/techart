@@ -22,7 +22,9 @@ export default class Button extends React.PureComponent {
   static propTypes = {
     backgroundColor: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
-    type: PropTypes.string
+    onClick: PropTypes.func,
+    type: PropTypes.string,
+    value: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -32,12 +34,20 @@ export default class Button extends React.PureComponent {
   };
 
   render() {
-    const { className, backgroundColor, color, type, value } = this.props;
+    const {
+      className,
+      backgroundColor,
+      color,
+      onClick,
+      type,
+      value
+    } = this.props;
     return (
       <ButtonStyled
         backgroundColor={backgroundColor}
         className={className}
         color={color}
+        onClick={onClick}
         type={type}
       >
         {value}

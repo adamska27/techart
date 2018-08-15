@@ -83,7 +83,7 @@ export default class RatingsReview extends React.PureComponent {
   };
 
   onChange = (value, name) => {
-    const ratings = this.state.ratings;
+    const { ratings } = this.state;
     this.setState({
       ratings: {
         ...ratings,
