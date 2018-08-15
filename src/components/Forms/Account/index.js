@@ -196,7 +196,6 @@ export default class Account extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     const { login, register, template } = this.props;
     const { showGamerProfilSlider } = this.state;
     const options = {
