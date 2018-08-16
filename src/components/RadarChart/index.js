@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 
 export default class RadarExample extends React.PureComponent {
-  static = {
+  static propTypes = {
     fetchUserRatings: PropTypes.func.isRequired,
     fetchRatingsAverage: PropTypes.func.isRequired,
     jwt: PropTypes.string.isRequired,

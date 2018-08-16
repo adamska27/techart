@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
 
-import { fetchProfile } from './actions';
+import { fetchUserProfile, fetchMyProfile } from './actions';
 
 import Profile from '../../components/Profile';
 
 const mapStateToProps = state => ({
-  isFetching: state.profile.isFetching,
-  infos: state.profile.infos,
+  isFetchingUserProfile: state.profile.isFetchingUserProfile,
+  isFetchingMyProfile: state.profile.isFetchingMyProfile,
+  userInfos: state.profile.userInfos,
+  myInfos: state.profile.myInfos,
   token: state.account.jwt
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchProfile: token => dispatch(fetchProfile(token))
+  fetchUserProfile: id => dispatch(fetchUserProfile(id)),
+  fetchMyProfile: token => dispatch(fetchMyProfile(token))
 });
 
 const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);

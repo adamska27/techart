@@ -5,7 +5,8 @@ import Wraper from '../../HOC/Wraper';
 
 class Profile extends React.PureComponent {
   render() {
-    return <ProfileContainer />;
+    const { match } = this.props;
+    return <ProfileContainer match={match} />;
   }
 }
 

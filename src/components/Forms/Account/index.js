@@ -15,10 +15,10 @@ import { Normal } from '../../common/Text';
 import UserIcon from '../../UserIcon';
 
 const marks = {
-  0: 'not at all',
-  2.5: 'blah',
-  5: 'yes',
-  7.5: 'a lot',
+  1: 'not at all',
+  3.25: 'blah',
+  5.5: 'yes',
+  7.75: 'a lot',
   10: `I love it`
 };
 
@@ -118,18 +118,18 @@ export default class Account extends React.Component {
     userName: '',
     email: '',
     password: '',
-    profilePicture: null,
+    profilePicture: 'https://cdn.filestackcontent.com/Nes1kLxSwC7YqVEBF1fR',
     gamerProfile: {
-      adventure: '',
-      action: '',
-      horror: '',
-      sport: '',
-      auto: '',
-      shooter: '',
-      str: '',
-      platform: '',
-      versus: '',
-      rpg: ''
+      adventure: 5,
+      action: 5,
+      horror: 5,
+      sport: 5,
+      auto: 5,
+      shooter: 5,
+      str: 5,
+      platform: 5,
+      versus: 5,
+      rpg: 5
     },
     showGamerProfilSlider: false,
     focus: false
@@ -170,7 +170,30 @@ export default class Account extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const data = this.state;
+    let data;
+    if (this.state.showGamerProfilSlider) {
+      data = this.state;
+    } else {
+      const {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password,
+        profilePicture
+      } = this.state;
+      data = Object.assign(
+        {},
+        {
+          firstName,
+          lastName,
+          userName,
+          email,
+          password,
+          profilePicture
+        }
+      );
+    }
     const { fetchSignUp, fetchLogin, template } = this.props;
     // adapt the submit function according to the form (template)
     template === 'signup' ? fetchSignUp(data) : fetchLogin(data);
@@ -269,7 +292,7 @@ export default class Account extends React.Component {
                     {this.sliderLabel('adventure')}
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -284,7 +307,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -299,7 +322,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -314,7 +337,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -329,7 +352,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -344,7 +367,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -359,7 +382,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -374,7 +397,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -389,7 +412,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}
@@ -404,7 +427,7 @@ export default class Account extends React.Component {
 
                     <Slider
                       included={false}
-                      min={0}
+                      min={1}
                       max={10}
                       marks={marks}
                       step={2.5}

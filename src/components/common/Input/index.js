@@ -30,7 +30,7 @@ const InputContainer = styled.div`
     height: 1px;
     width: 100%;
     position: absolute;
-    bottom: 4px;
+    bottom: 3px;
     left: 0;
     transition: transform 0.4s;
     background-color: ${props =>

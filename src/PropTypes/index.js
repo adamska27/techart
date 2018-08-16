@@ -60,3 +60,21 @@ export const gameType = PropTypes.shape({
   createdAt: PropTypes.string,
   updatedAt: PropTypes.string
 });
+
+export const profileType = PropTypes.shape({
+  id: PropTypes.number,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  userName: PropTypes.string,
+  profilePicture: PropTypes.string,
+  adventure: PropTypes.number,
+  action: PropTypes.number,
+  horror: PropTypes.number,
+  sport: PropTypes.number,
+  auto: PropTypes.number,
+  shooter: PropTypes.number,
+  str: PropTypes.number,
+  platform: PropTypes.number,
+  versus: PropTypes.number,
+  rpg: PropTypes.number
+});

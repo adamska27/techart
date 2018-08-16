@@ -1,34 +1,69 @@
 import {
-  FETCH_PROFILE_FAILED,
-  FETCH_PROFILE_REQUEST,
-  FETCH_PROFILE_SUCCESS
+  FETCH_USER_PROFILE_FAILED,
+  FETCH_USER_PROFILE_REQUEST,
+  FETCH_USER_PROFILE_SUCCESS,
+  FETCH_MY_PROFILE_FAILED,
+  FETCH_MY_PROFILE_REQUEST,
+  FETCH_MY_PROFILE_SUCCESS
 } from './constants';
 
-export const fetchProfileFailed = error => ({
-  type: FETCH_PROFILE_FAILED,
+export const fetchUserProfileFailed = error => ({
+  type: FETCH_USER_PROFILE_FAILED,
   error
 });
 
-export const fetchProfileRequest = () => ({
-  type: FETCH_PROFILE_REQUEST
+export const fetchUserProfileRequest = () => ({
+  type: FETCH_USER_PROFILE_REQUEST
 });
 
-export const fetchProfileSuccess = infos => ({
-  type: FETCH_PROFILE_SUCCESS,
-  infos
+export const fetchUserProfileSuccess = userInfos => ({
+  type: FETCH_USER_PROFILE_SUCCESS,
+  userInfos
 });
 
-export const fetchProfile = token => async (dispatch, state) => {
-  dispatch(fetchProfileRequest());
+export const fetchMyProfileFailed = error => ({
+  type: FETCH_MY_PROFILE_FAILED,
+  error
+});
 
-  const url = 'http://localhost:3005/user/profile';
+export const fetchMyProfileRequest = () => ({
+  type: FETCH_MY_PROFILE_REQUEST
+});
 
-  await fetch(url, {
+export const fetchMyProfileSuccess = myInfos => ({
+  type: FETCH_MY_PROFILE_SUCCESS,
+  myInfos
+});
+
+export const fetchMyProfile = token => async dispatch => {
+  dispatch(fetchMyProfileRequest());
+
+  const url = `http://localhost:3005/user/profile`;
+
+  const headers = {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`
     }
-  })
-    .then(res => res.json(), error => dispatch(fetchProfileFailed(error)))
-    .then(infos => dispatch(fetchProfileSuccess(infos)));
+  };
+
+  await fetch(url, headers)
+    .then(res => res.json(), error => dispatch(fetchMyProfileFailed(error)))
+    .then(myInfos => dispatch(fetchMyProfileSuccess(myInfos)));
+};
+
+export const fetchUserProfile = id => async dispatch => {
+  dispatch(fetchUserProfileRequest());
+
+  const url = `http://localhost:3005/user/profile/${id}`;
+
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  await fetch(url, headers)
+    .then(res => res.json(), error => dispatch(fetchUserProfileFailed(error)))
+    .then(userInfos => dispatch(fetchUserProfileSuccess(userInfos)));
 };
