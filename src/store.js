@@ -23,7 +23,8 @@ store.subscribe(
     saveState({
       account: store.getState().account,
       game: store.getState().game,
-      search: store.getState().search
+      search: store.getState().search,
+      global: store.getState().global
     });
   }, 1000)
 );

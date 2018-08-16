@@ -98,10 +98,13 @@ const SearchBarContainer = styled.div`
 
 export default class Header extends React.Component {
   static propTypes = {
+    changeToDarkTheme: PropTypes.func.isRequired,
+    changeToLightTheme: PropTypes.func.isRequired,
     closeNavMobile: PropTypes.func.isRequired,
     jwt: PropTypes.string,
     navMobile: PropTypes.bool.isRequired,
-    openNavMobile: PropTypes.func.isRequired
+    openNavMobile: PropTypes.func.isRequired,
+    theme: PropTypes.string.isRequired
   };
 
   onBtnNavMobileClick = () => {
@@ -110,6 +113,15 @@ export default class Header extends React.Component {
 
   onCrossNavMobileClick = () => {
     this.props.closeNavMobile();
+  };
+
+  onChangeTheme = () => {
+    const { changeToDarkTheme, changeToLightTheme, theme } = this.props;
+    if (theme === 'light') {
+      changeToDarkTheme();
+    } else {
+      changeToLightTheme();
+    }
   };
 
   logout = () => {
@@ -172,6 +184,7 @@ export default class Header extends React.Component {
           <SearchBarContainer>
             <Search />
           </SearchBarContainer>
+          <button onClick={this.onChangeTheme}>change theme</button>
         </ContainerNav>
       </ContainerHeader>
     );

@@ -4,7 +4,7 @@ import { account } from './containers/AccountContainer/reducers';
 import { collection } from './containers/Collection/reducers';
 import { game } from './containers/GameContainer/reducers';
 import { latestUsers } from './containers/LatestUsers/reducers';
-import { navMobile } from './containers/Header/reducers';
+import { global } from './containers/Header/reducers';
 import { popularGames } from './containers/PopularGames/reducers';
 import { profile } from './containers/Profile/reducers';
 import { ratings } from './containers/Ratings/reducers';
@@ -20,7 +20,7 @@ const reducers = combineReducers({
   collection,
   game,
   latestUsers,
-  navMobile,
+  global,
   popularGames,
   profile,
   ratings,
