@@ -18,7 +18,7 @@ const fetchAllReviewsSuccess = reviews => ({
 
 export const fetchReviews = productId => async dispatch => {
   dispatch(fetchAllReviewsRequest());
-  const url = `http://localhost:3005/review/product/${productId}`;
+  const url = `http://localhost:3005/reviews/product/${productId}`;
 
   await fetch(url, {
     headers: {

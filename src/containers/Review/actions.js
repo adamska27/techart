@@ -12,7 +12,7 @@ const fetchReviewSuccess = review => ({ type: FETCH_REVIEW_SUCCESS, review });
 
 export const fetchReview = reviewId => async dispatch => {
   dispatch(fetchReviewRequest());
-  const url = `http://localhost:3005/review/${reviewId}`;
+  const url = `http://localhost:3005/reviews/review/${reviewId}`;
 
   await fetch(url, {
     headers: {

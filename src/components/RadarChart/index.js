@@ -111,7 +111,36 @@ export default class RadarExample extends React.PureComponent {
                 data={data}
                 height={200}
                 width={200}
-                options={{ maintainAspectRatio: false }}
+                options={{
+                  maintainAspectRatio: false,
+                  legend: false,
+                  gridLines: {
+                    display: false
+                  },
+                  scale: {
+                    gridLines: {
+                      color: [
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white',
+                        'white'
+                      ]
+                    },
+                    pointLabels: {
+                      fontSize: 12
+                    },
+                    ticks: {
+                      suggestedMin: 0,
+                      suggestedMax: 10,
+                      display: false,
+                      maxTicksLimit: 5
+                    }
+                  }
+                }}
               />
             </div>
           </div>
