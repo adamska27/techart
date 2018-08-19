@@ -11,6 +11,7 @@ import { ratings } from './containers/Ratings/reducers';
 import { recentGames } from './containers/RecentGames/reducers';
 import { review } from './containers/Review/reducers';
 import { reviewsAll } from './containers/ReviewsAll/reducers';
+import { reviewsOfTheWeek } from './containers/ReviewsOfTheWeek/reducers';
 import { search } from './containers/Search/reducers';
 import { submitRatingsReview } from './containers/RatingsReviewForm/reducers';
 import { userOfTheWeek } from './containers/UserOfTheWeek/reducers';
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   recentGames,
   review,
   reviewsAll,
+  reviewsOfTheWeek,
   search,
   submitRatingsReview,
   userOfTheWeek
