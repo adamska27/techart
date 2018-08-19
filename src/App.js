@@ -36,9 +36,13 @@ class App extends Component {
                 <Route path="/login" component={LogIn} />
                 <Route path="/user/:id" component={Profile} />
                 <Route path="/collection" component={Collection} />
-                <Route exact path="/review/:id" component={Review} />
                 <Route
-                  path="/review/product/:productId"
+                  exact
+                  path="/review/:productId/:reviewId"
+                  component={Review}
+                />
+                <Route
+                  path="/reviews/product/:productId"
                   component={ReviewsAll}
                 />
                 <Route path="/search/:keyword" component={SearchResult} />

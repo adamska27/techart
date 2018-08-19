@@ -1,10 +1,5 @@
 import PropTypes from 'prop-types';
 
-export const reviewType = PropTypes.shape({
-  id: PropTypes.number,
-  body: PropTypes.string
-});
-
 export const basicType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired
@@ -77,4 +72,22 @@ export const profileType = PropTypes.shape({
   platform: PropTypes.number,
   versus: PropTypes.number,
   rpg: PropTypes.number
+});
+
+export const reviewType = PropTypes.shape({
+  id: PropTypes.number,
+  count: PropTypes.string,
+  body: PropTypes.string,
+  name: PropTypes.string,
+  screenshots: PropTypes.arrayOf(screenshotType)
+});
+
+export const reviewsType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  product_id: PropTypes.number.isRequired,
+  user_id: PropTypes.number.isRequired,
+  likes_count: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  profilePicture: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired
 });
