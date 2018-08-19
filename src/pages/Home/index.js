@@ -8,6 +8,7 @@ import Loader from '../../components/common/Loader';
 import LatestUsers from '../../containers/LatestUsers';
 import PopularGamesContainer from '../../containers/PopularGames';
 import RecentGamesContainer from '../../containers/RecentGames';
+import ReviewsOfTheWeek from '../../containers/ReviewsOfTheWeek';
 import UserOfTheWeek from '../../containers/UserOfTheWeek';
 import Wraper from '../../HOC/Wraper';
 
@@ -64,6 +65,7 @@ class Home extends React.Component {
     return (
       <MainContainer>
         <PopularGamesContainer />
+        <ReviewsOfTheWeek />
         <SubContainer>
           <RecentGamesContainer />
           <UsersInfos>
