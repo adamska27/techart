@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchReviews: prodcutId => dispatch(fetchReviews(prodcutId))
+  fetchReviews: productId => dispatch(fetchReviews(productId))
 });
 
 const ReviewsAllContainer = connect(mapStateToProps, mapDispatchToProps)(
