@@ -55,7 +55,7 @@ export const fetchSubmitRatingsReview = (
   if (review) {
     // post review
     dispatch(submitReviewRequest());
-    fetch(`http://localhost:3005/review/${product_id}`, {
+    fetch(`http://localhost:3005/reviews/${product_id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

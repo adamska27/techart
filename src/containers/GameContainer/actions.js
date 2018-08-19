@@ -52,7 +52,7 @@ export const fetchGame = id => async dispatch => {
 
   // check the result return by our api
   if (!checkproductInBase.json[0]) {
-    const apiUrl = `https://api-2445582011268.apicast.io/games/${id}?fields=name,summary,screenshots,storyline,release_dates,hypes,popularity,genres,collection,franchises,game_modes,developers,keywords,themes,platforms,expansions,artworks,videos,publishers&expand=genres,collection,franchises,game_modes,developers,game_engines,keywords,publishers,themes,platforms,expansions`;
+    const apiUrl = `https://api-2445582011268.apicast.io/games/${id}?fields=name,summary,cover,screenshots,storyline,release_dates,hypes,popularity,genres,collection,franchises,game_modes,developers,keywords,themes,platforms,expansions,artworks,videos,publishers&expand=genres,collection,franchises,game_modes,developers,game_engines,keywords,publishers,themes,platforms,expansions`;
     let game;
 
     // fetch IGDB api
@@ -70,6 +70,7 @@ export const fetchGame = id => async dispatch => {
     // save the result from IGDB api
     const {
       artworks,
+      cover,
       developers,
       expansions,
       franchises,
@@ -98,6 +99,7 @@ export const fetchGame = id => async dispatch => {
       },
       body: JSON.stringify({
         artworks,
+        cover,
         developers,
         expansions,
         franchises,
