@@ -100,7 +100,7 @@ export default class RecentGames extends React.Component {
 
     return (
       <Container>
-        <TitleSection value="Les Plus Récents" />
+        <TitleSection value="Recently Released" />
         <ul>
           {recentGames && recentGames.length ? (
             recentGames.map((game, i) => {

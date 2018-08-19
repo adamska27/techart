@@ -99,7 +99,7 @@ export default class PopularGames extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <TitleSection value="Les Plus Populaires" />
+        <TitleSection value="Most Popular" />
         {popularGames && popularGames.length ? (
           <Container>
             {popularGames.map(game => {

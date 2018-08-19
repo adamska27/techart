@@ -39,7 +39,7 @@ export default class LatestUser extends React.Component {
     const { latestUsers } = this.props;
     return (
       <Container>
-        <TitleAside value={`Derniers inscris: `} />
+        <TitleAside value={`Last Registered`} />
         <UserContainer>
           {latestUsers &&
             latestUsers.length &&
