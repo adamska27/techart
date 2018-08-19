@@ -24,7 +24,7 @@ class Game extends React.PureComponent {
       <React.Fragment>
         <GameContainer match={match} fetched={fetched} />
         <Ratings match={match} />
-        <Link to={`/review/product/${match.params.gameId}`}>
+        <Link to={`/reviews/product/${match.params.gameId}`}>
           <ButtonContainer>
             <ButtonStyled value="Voir les critiques" />
           </ButtonContainer>

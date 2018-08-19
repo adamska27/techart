@@ -46,7 +46,7 @@ export default class UserOfTheWeek extends React.Component {
 
     return (
       <Container>
-        <Title value={`L'utilisateur de la semaine`} />
+        <Title value={`User Of The Week`} />
         {userOfTheWeek && id ? (
           <UserIcon
             id={id}
