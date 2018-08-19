@@ -6,13 +6,13 @@ import Review from '../../components/Review';
 
 const mapStateToProps = state => ({
   error: state.review.error,
-  game: state.game.game,
   isFetching: state.review.isFetching,
   review: state.review.review
 });
 
 const mapDispatchToProp = dispatch => ({
-  fetchReview: reviewId => dispatch(fetchReview(reviewId))
+  fetchReview: (productId, reviewId) =>
+    dispatch(fetchReview(productId, reviewId))
 });
 
 const ReviewContainer = connect(mapStateToProps, mapDispatchToProp)(Review);

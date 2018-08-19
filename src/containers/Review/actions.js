@@ -10,9 +10,9 @@ const fetchReviewFailed = error => ({ type: FETCH_REVIEW_FAILED, error });
 
 const fetchReviewSuccess = review => ({ type: FETCH_REVIEW_SUCCESS, review });
 
-export const fetchReview = reviewId => async dispatch => {
+export const fetchReview = (productId, reviewId) => async dispatch => {
   dispatch(fetchReviewRequest());
-  const url = `http://localhost:3005/reviews/review/${reviewId}`;
+  const url = `http://localhost:3005/reviews/review/${productId}/${reviewId}`;
 
   await fetch(url, {
     headers: {

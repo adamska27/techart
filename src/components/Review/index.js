@@ -8,6 +8,15 @@ import { reviewType } from '../../PropTypes';
 import Loader from '../common/Loader';
 import TitleSection from '../common/TitleSection';
 
+const Container = styled.div`
+  padding: 48px;
+`;
+
+const Count = styled.div`
+  padding: 24px;
+  text-align: center;
+`;
+
 const Image = styled.img`
   height: 100%;
   object-fit: cover;
@@ -19,20 +28,23 @@ const ImageContainer = styled.div`
   width: 100%;
 `;
 
-const TextContainer = styled.div`
-  padding: 48px;
-`;
+const TextContainer = styled.div``;
 
 export default class Review extends React.PureComponent {
   static propTypes = {
     error: PropTypes.object,
     fetchReview: PropTypes.func.isRequired,
-    review: reviewType.isRequired
+    match: PropTypes.object.isRequired,
+    review: PropTypes.arrayOf(reviewType).isRequired
+  };
+
+  fetchReview = () => {
+    const { match, fetchReview } = this.props;
+    fetchReview(match.params.productId, match.params.reviewId);
   };
 
   componentDidMount() {
-    const { match, fetchReview } = this.props;
-    fetchReview(match.params.id);
+    this.fetchReview();
   }
 
   renderImage = url => {
@@ -45,27 +57,33 @@ export default class Review extends React.PureComponent {
   };
 
   render() {
-    const { isFetching, review, game } = this.props;
-    const check = !!Object.values(review).length;
+    const { isFetching, review } = this.props;
 
     if (isFetching) {
       return <Loader />;
     }
 
     return (
-      <div>
-        {check ? (
+      <React.Fragment>
+        {review && review.length ? (
           <React.Fragment>
             <ImageContainer>
-              {this.renderImage(game[0].screenshots[0].url)}
+              {this.renderImage(review[0].screenshots[0].url)}
             </ImageContainer>
-            <TextContainer>
-              <TitleSection value={game[0].name} />
-              <div dangerouslySetInnerHTML={this.renderReview(review.body)} />
-            </TextContainer>
+            <Container>
+              <TextContainer>
+                <TitleSection value={review[0].name} />
+                <div
+                  dangerouslySetInnerHTML={this.renderReview(review[0].body)}
+                />
+              </TextContainer>
+              <Count>
+                <p>{review[0].likes_count} likes</p>
+              </Count>
+            </Container>
           </React.Fragment>
         ) : null}
-      </div>
+      </React.Fragment>
     );
   }
 }
