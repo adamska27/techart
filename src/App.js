@@ -19,6 +19,7 @@ import Review from './pages/Review';
 import ReviewsAll from './pages/ReviewsAll';
 import SearchResult from './pages/SearchResult';
 import SignUp from './pages/SignUp';
+import ScrollToTop from './components/ScrollToTop';
 
 class App extends Component {
   render() {
@@ -26,29 +27,31 @@ class App extends Component {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Router>
-            <React.Fragment>
-              <HeaderContainer />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/game/:gameId" component={Game} />
-                <Route path="/:gameId/rating" component={RatingsReviewForm} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/login" component={LogIn} />
-                <Route path="/user/:id" component={Profile} />
-                <Route path="/collection" component={Collection} />
-                <Route
-                  exact
-                  path="/review/:productId/:reviewId"
-                  component={Review}
-                />
-                <Route
-                  path="/reviews/product/:productId"
-                  component={ReviewsAll}
-                />
-                <Route path="/search/:keyword" component={SearchResult} />
-                <Route component={PagesNotFound} />
-              </Switch>
-            </React.Fragment>
+            <ScrollToTop>
+              <React.Fragment>
+                <HeaderContainer />
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/game/:gameId" component={Game} />
+                  <Route path="/:gameId/rating" component={RatingsReviewForm} />
+                  <Route path="/signup" component={SignUp} />
+                  <Route path="/login" component={LogIn} />
+                  <Route path="/user/:id" component={Profile} />
+                  <Route path="/collection" component={Collection} />
+                  <Route
+                    exact
+                    path="/review/:productId/:reviewId"
+                    component={Review}
+                  />
+                  <Route
+                    path="/reviews/product/:productId"
+                    component={ReviewsAll}
+                  />
+                  <Route path="/search/:keyword" component={SearchResult} />
+                  <Route component={PagesNotFound} />
+                </Switch>
+              </React.Fragment>
+            </ScrollToTop>
           </Router>
         </ThemeProvider>
       </Provider>
