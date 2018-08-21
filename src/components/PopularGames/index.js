@@ -14,7 +14,7 @@ const WidthPlaceHolder = 250;
 const Container = styled.ul`
   display: grid;
   grid-auto-columns: min-content;
-  grid-template-areas: 'game game game game game game game game';
+  grid-template-areas: 'game game game game game game game game game game game game';
   grid-template-rows: 1fr;
   margin: 0 auto;
   overflow-x: scroll;

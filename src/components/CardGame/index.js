@@ -12,7 +12,7 @@ const Container = styled.div`
   background-color: lightgray;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px;
-  height: 440px;
+  height: 450px;
   margin: 24px 6px;
   text-align: center;
   overflow: hidden;

@@ -79,8 +79,6 @@ export default class GamerProfile extends React.PureComponent {
       ]
     };
 
-    console.log(this.props);
-
     return (
       <Container>
         {userGamerProfile && userGamerProfile.length ? (

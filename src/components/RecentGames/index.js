@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import media from '../../styles/media';
+
 import Button from '../common/Button';
 import TitleSection from '../common/TitleSection';
 import PlaceHolder from '../common/PlaceHolderImage';
@@ -16,6 +18,10 @@ const ButtonStyled = styled(Button)`
 
 const Container = styled.div`
   padding: 20px 0;
+
+  ${media.tablet`
+    padding: 0;
+  `};
 `;
 
 const ItemContainer = styled.li`

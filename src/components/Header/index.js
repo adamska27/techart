@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import decode from 'jwt-decode';
 
 import media from '../../styles/media';
+import yinYang from '../../static/yinYang.png';
 
 import btnNavMobile from '../../static/btnNavMobile.svg';
 import crossNavMobile from '../../static/crossNavMobile.svg';
@@ -56,13 +57,15 @@ const ContainerNav = styled.nav`
   display: grid;
   grid-template-areas:
     'Logo MainNav AccountNav'
-    'SearchBar SearchBar SearchBar';
+    'Logo SearchBarContainer .';
   grid-template-columns: 1fr 4fr 2fr;
   grid-template-rows: 40px 40px;
   padding: 10px;
 
   ${media.tablet`
-    grid-template-areas: 'BtnNavMobile Logo';
+    grid-template-areas: 
+    'BtnNavMobile Logo'
+    'SearchBarContainer SearchBarContainer';
     grid-template-columns: min-content 1fr;
   `};
 `;
@@ -94,6 +97,7 @@ const SearchBarContainer = styled.div`
   display: flex;
   justify-content: center;
   grid-column: 1 / 4;
+  grid-area: SearchBarContainer;
 `;
 
 export default class Header extends React.Component {
@@ -144,21 +148,19 @@ export default class Header extends React.Component {
               <img src={btnNavMobile} alt="button-nav-mobile" />
             </BtnNavMobile>
           )}
-          <Link to="/">
-            <Logo>Logo</Logo>
-          </Link>
+          <Logo>
+            <img
+              style={{ height: '50px', width: '50px' }}
+              src={yinYang}
+              alt="logo"
+            />
+          </Logo>
           <MainNav>
             <Link to="/">
-              <li>Accueil</li>
-            </Link>
-            <Link to="/games">
-              <li>Jeux</li>
-            </Link>
-            <Link to="/members">
-              <li>membres</li>
+              <li>Home</li>
             </Link>
             <Link to="/collection">
-              <li>mes jeux</li>
+              <li>My Games</li>
             </Link>
           </MainNav>
           <AccountNav>

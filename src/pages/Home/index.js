@@ -33,8 +33,9 @@ const SubContainer = styled.div`
   padding: 48px 0;
 
   ${media.tablet`
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: auto;
+    padding: 12px 0;
   `};
 `;
 
@@ -42,6 +43,11 @@ const UsersInfos = styled.div`
   display: grid;
   grid-template-rows: 3fr 1fr;
   max-height: 431px;
+
+  ${media.tablet`
+    display: block;
+    width: 100%;
+  `};
 `;
 
 class Home extends React.Component {

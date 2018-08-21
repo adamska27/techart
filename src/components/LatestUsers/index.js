@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import media from '../../styles/media';
+
 import TitleAside from '../common/TitleAside';
 import UserIcon from '../UserIcon';
 
@@ -13,7 +15,12 @@ const Container = styled.div`
 const UserContainer = styled.div`
   align-items: center;
   display: flex;
+  justify-content: center;
   overflow-x: scroll;
+
+  ${media.phone`
+    justify-content: flex-start;
+  `};
 `;
 
 export default class LatestUser extends React.Component {
