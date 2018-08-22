@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import getBetterCover from '../../utils/getBetterCover';
 import { reviewType } from '../../PropTypes';
 
+import LikeUnlikeReview from '../../containers/LikeUnlikeReview';
 import Loader from '../common/Loader';
 import TitleSection from '../common/TitleSection';
 
@@ -35,17 +36,42 @@ export default class Review extends React.PureComponent {
     error: PropTypes.object,
     fetchReview: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    review: PropTypes.arrayOf(reviewType).isRequired
+    review: reviewType.isRequired,
+    token: PropTypes.string
   };
 
-  fetchReview = () => {
-    const { match, fetchReview } = this.props;
-    fetchReview(match.params.productId, match.params.reviewId);
+  state = {
+    likes_count: 0
+  };
+
+  fetchReview = async () => {
+    const { match, fetchReview, token } = this.props;
+    await fetchReview(match.params.productId, match.params.reviewId, token);
+    this.setState({
+      isLiked: this.props.review.isLiked,
+      likes_count: this.props.review.likes_count
+    });
   };
 
   componentDidMount() {
     this.fetchReview();
   }
+
+  handleCountLikeUnlike = action => {
+    const { isLiked } = this.state;
+    if (action === 'isLiked' && !isLiked) {
+      this.setState({
+        isLiked: true,
+        likes_count: Number(this.state.likes_count) + 1
+      });
+    }
+    if (action === 'isUnliked' && isLiked) {
+      this.setState({
+        isLiked: false,
+        likes_count: Number(this.state.likes_count) - 1
+      });
+    }
+  };
 
   renderImage = url => {
     const cover = getBetterCover(url, /thumb/, '720p');
@@ -57,7 +83,8 @@ export default class Review extends React.PureComponent {
   };
 
   render() {
-    const { isFetching, review } = this.props;
+    const { isFetching, match, review, token } = this.props;
+    const { isLiked, likes_count } = this.state;
 
     if (isFetching) {
       return <Loader />;
@@ -65,21 +92,26 @@ export default class Review extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {review && review.length ? (
+        {review && Object.values(review).length ? (
           <React.Fragment>
             <ImageContainer>
-              {this.renderImage(review[0].screenshots[0].url)}
+              {this.renderImage(review.screenshots[0].url)}
             </ImageContainer>
             <Container>
               <TextContainer>
-                <TitleSection value={review[0].name} />
-                <div
-                  dangerouslySetInnerHTML={this.renderReview(review[0].body)}
-                />
+                <TitleSection value={review.name} />
+                <div dangerouslySetInnerHTML={this.renderReview(review.body)} />
               </TextContainer>
               <Count>
-                <p>{review[0].likes_count} likes</p>
+                <p>{likes_count} likes</p>
               </Count>
+              {token ? (
+                <LikeUnlikeReview
+                  handleCountLikeUnlike={this.handleCountLikeUnlike}
+                  isLiked={isLiked}
+                  reviewId={review.reviewId}
+                />
+              ) : null}
             </Container>
           </React.Fragment>
         ) : null}

@@ -7,7 +7,7 @@ import {
 const initialState = {
   error: null,
   isFetching: false,
-  review: []
+  review: {}
 };
 
 export const review = (state = initialState, action) => {
