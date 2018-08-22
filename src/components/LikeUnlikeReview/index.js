@@ -8,6 +8,10 @@ const ButtonContainer = styled.div`
   width: 150px;
 `;
 
+const StyledButton = styled(Button)`
+  padding: 12px 6px;
+`;
+
 export default class LikeReview extends React.PureComponent {
   onLikeUnlike = async () => {
     const {
@@ -33,11 +37,11 @@ export default class LikeReview extends React.PureComponent {
       <React.Fragment>
         {isLiked ? (
           <ButtonContainer>
-            <Button onClick={this.onLikeUnlike} value="Unlike" />
+            <StyledButton onClick={this.onLikeUnlike} value="Unlike" />
           </ButtonContainer>
         ) : (
           <ButtonContainer>
-            <Button onClick={this.onLikeUnlike} value="Like" />
+            <StyledButton onClick={this.onLikeUnlike} value="Like" />
           </ButtonContainer>
         )}
       </React.Fragment>

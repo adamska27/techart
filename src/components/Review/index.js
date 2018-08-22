@@ -29,7 +29,9 @@ const ImageContainer = styled.div`
   width: 100%;
 `;
 
-const TextContainer = styled.div``;
+const TextContainer = styled.div`
+  line-height: 2em;
+`;
 
 export default class Review extends React.PureComponent {
   static propTypes = {
@@ -98,8 +100,8 @@ export default class Review extends React.PureComponent {
               {this.renderImage(review.screenshots[0].url)}
             </ImageContainer>
             <Container>
+              <TitleSection value={review.name} />
               <TextContainer>
-                <TitleSection value={review.name} />
                 <div dangerouslySetInnerHTML={this.renderReview(review.body)} />
               </TextContainer>
               <Count>
@@ -109,7 +111,7 @@ export default class Review extends React.PureComponent {
                 <LikeUnlikeReview
                   handleCountLikeUnlike={this.handleCountLikeUnlike}
                   isLiked={isLiked}
-                  reviewId={review.reviewId}
+                  reviewId={review.review_id}
                 />
               ) : null}
             </Container>

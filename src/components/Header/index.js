@@ -170,7 +170,7 @@ export default class Header extends React.Component {
                 <Link to={`/user/${id}`}>
                   <li>Profil</li>
                 </Link>
-                <Logout onClick={this.logout}>déconnexion</Logout>
+                <Logout onClick={this.logout}>Log Out</Logout>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -183,10 +183,10 @@ export default class Header extends React.Component {
               </React.Fragment>
             )}
           </AccountNav>
-          <SearchBarContainer>
+          {/* <SearchBarContainer>
             <Search />
-          </SearchBarContainer>
-          <button onClick={this.onChangeTheme}>change theme</button>
+          </SearchBarContainer> */}
+          {/* <button onClick={this.onChangeTheme}>change theme</button> */}
         </ContainerNav>
       </ContainerHeader>
     );

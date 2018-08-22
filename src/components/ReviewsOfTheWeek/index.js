@@ -26,10 +26,10 @@ const Body = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 24px 12px;
+  padding: 24px 0;
 
   ${media.phone`
-    padding: 0px 12px;
+    padding: 0px;
   `};
 `;
 
@@ -134,11 +134,7 @@ export default class ReviewsOfTheWeek extends React.PureComponent {
   };
 
   render() {
-    const { isFetching, reviews, reviewAllComponent } = this.props;
-
-    if (isFetching) {
-      return <Loader />;
-    }
+    const { reviews, reviewAllComponent } = this.props;
 
     return (
       <Container>
