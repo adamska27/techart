@@ -9,7 +9,7 @@ import media from '../../styles/media';
 import yinYang from '../../static/yinYang.png';
 
 import btnNavMobile from '../../static/btnNavMobile.svg';
-import crossNavMobile from '../../static/crossNavMobile.svg';
+import crossNavMobile from '../../static/crossNavMobile.png';
 
 import Search from '../../containers/Search';
 
@@ -175,10 +175,10 @@ export default class Header extends React.Component {
             ) : (
               <React.Fragment>
                 <Link to="/signup">
-                  <li>Inscription</li>
+                  <li>SignUp</li>
                 </Link>
                 <Link to="/login">
-                  <li>Connexion</li>
+                  <li>LogIn</li>
                 </Link>
               </React.Fragment>
             )}

@@ -13,6 +13,7 @@ const getTransformValue = ({ navMobile }) => {
 const Container = styled.ul.attrs({ transform: getTransformValue })`
   background-color: lightgrey;
   display: none;
+  margin-top: 100px;
   width: 100%;
 
   ${media.tablet`
@@ -39,32 +40,22 @@ export default class NavMobile extends React.PureComponent {
       <Container navMobile={navMobile} onClick={closeNavMobile}>
         <Link to="/">
           <LinkStyled>
-            <li>Accueil</li>
+            <li>Home</li>
           </LinkStyled>
         </Link>
-        <Link to="/games">
+        <Link to="/collection">
           <LinkStyled>
-            <li>Jeux</li>
-          </LinkStyled>
-        </Link>
-        <Link to="/members">
-          <LinkStyled>
-            <li>membres</li>
-          </LinkStyled>
-        </Link>
-        <Link to="/mygames">
-          <LinkStyled>
-            <li>mes jeux</li>
+            <li>My Games</li>
           </LinkStyled>
         </Link>
         <Link to="/signup">
           <LinkStyled>
-            <li>Inscription</li>
+            <li>SignUp</li>
           </LinkStyled>
         </Link>
         <Link to="/login">
           <LinkStyled>
-            <li>Connexion</li>
+            <li>LogIn</li>
           </LinkStyled>
         </Link>
       </Container>
