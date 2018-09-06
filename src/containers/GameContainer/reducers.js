@@ -17,7 +17,7 @@ const initialState = {
   isFetchingGameIgdb: false,
   isFetchingGame: false,
   isFetchingPostGame: false,
-  game: null,
+  game: {},
   lastFetch: 0,
   scraped: false
 };

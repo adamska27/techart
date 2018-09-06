@@ -85,7 +85,7 @@ export default class Review extends React.PureComponent {
   };
 
   render() {
-    const { isFetching, match, review, token } = this.props;
+    const { isFetching, review, token } = this.props;
     const { isLiked, likes_count } = this.state;
 
     if (isFetching) {

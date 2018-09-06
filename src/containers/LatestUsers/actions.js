@@ -4,8 +4,6 @@ import {
   FETCH_LATEST_USERS_SUCCESS
 } from './constants';
 
-import fetchAgain from '../../utils/fetchAgain';
-
 const DATE_NOW = Date.now();
 
 export const fetchLatestUsersFailed = error => ({
@@ -24,22 +22,17 @@ export const fetchLatestUsersSuccess = (latestUsers, lastFetch) => ({
 });
 
 export const fetchLatestUsers = () => async (dispatch, getState) => {
-  const timeSinceLastFetch = getState().latestUsers.lastFetch;
-  const fetchOrNo = fetchAgain(timeSinceLastFetch);
+  dispatch(fetchLatestUsersRequest());
 
-  if (fetchOrNo) {
-    dispatch(fetchLatestUsersRequest());
-
-    try {
-      const user = await fetch('http://localhost:3005/user/latest', {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const result = await user.json();
-      dispatch(fetchLatestUsersSuccess(result, DATE_NOW));
-    } catch (err) {
-      dispatch(fetchLatestUsersFailed(err));
-    }
+  try {
+    const user = await fetch('http://localhost:3005/user/latest', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const result = await user.json();
+    dispatch(fetchLatestUsersSuccess(result, DATE_NOW));
+  } catch (err) {
+    dispatch(fetchLatestUsersFailed(err));
   }
 };

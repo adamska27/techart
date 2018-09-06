@@ -5,6 +5,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Button from '../common/Button';
+
+import media from '../../styles/media';
 import { theme } from '../../styles/theme';
 
 const ButtonContainer = styled.div`
@@ -18,15 +20,19 @@ const ButtonStyled = styled(Button)`
 `;
 
 const Container = styled.div`
-  margin: 0 auto;
+  margin: 100px auto;
   width: 80%;
+
+  ${media.phone`
+    margin: 0 auto;
+  `};
 `;
 
-export default class RadarExample extends React.PureComponent {
+export default class RadarChart extends React.PureComponent {
   static propTypes = {
     fetchUserRatings: PropTypes.func.isRequired,
     fetchRatingsAverage: PropTypes.func.isRequired,
-    jwt: PropTypes.string.isRequired,
+    jwt: PropTypes.string,
     ratingsAverage: PropTypes.array.isRequired,
     userRatings: PropTypes.array.isRequired
   };
@@ -44,16 +50,16 @@ export default class RadarExample extends React.PureComponent {
     const { jwt, userRatings, ratingsAverage } = this.props;
     const data = {
       labels: [
-        'histoire',
+        'story',
         'feeling',
         'level-design',
         'art-design',
-        'originalité',
+        'originality',
         'sound-design',
         'textures',
         'framerate',
-        'physique',
-        'éclairage'
+        'physic',
+        'lighting'
       ],
       datasets: [
         {
@@ -150,7 +156,7 @@ export default class RadarExample extends React.PureComponent {
             to={!jwt ? '/login' : `/${this.props.match.params.gameId}/rating`}
           >
             <ButtonContainer>
-              <ButtonStyled value="évaluer" />
+              <ButtonStyled value="evaluate" />
             </ButtonContainer>
           </Link>
         ) : null}

@@ -48,13 +48,15 @@ const Wraper = Component => {
     render() {
       const { closeNavMobile, navMobile, theme } = this.props;
       return (
-        <GridMobile>
-          <NavMobile navMobile={navMobile} closeNavMobile={closeNavMobile} />
-          <ContainerPage themeStyle={theme} navMobile={navMobile}>
-            <Component {...this.props} />
-          </ContainerPage>
+        <React.Fragment>
+          <GridMobile>
+            <NavMobile navMobile={navMobile} closeNavMobile={closeNavMobile} />
+            <ContainerPage themeStyle={theme} navMobile={navMobile}>
+              <Component {...this.props} />
+            </ContainerPage>
+          </GridMobile>
           <Footer />
-        </GridMobile>
+        </React.Fragment>
       );
     }
   };

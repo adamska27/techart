@@ -1,22 +1,9 @@
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 
 import { reviewsType } from '../../PropTypes';
 
-import Button from '../../components/common/Button';
-
 import Reviews from '../ReviewsOfTheWeek';
-
-const ButtonContainer = styled.div`
-  margin: 0 auto;
-  width: 200px;
-`;
-
-const ButtonStyled = styled(Button)`
-  padding: 12px 6px;
-`;
 
 export default class ReviewsAll extends React.PureComponent {
   static propTypes = {

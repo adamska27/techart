@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
-import Loader from '../common/Loader';
 import Title from '../common/TitleSection';
 import UserIcon from '../UserIcon';
 
@@ -75,6 +74,9 @@ const ReviewContainer = styled.div`
 
 const ReviewsContainer = styled.div`
   display: flex;
+  flex-direction: ${props => (props.reviewAllComponent ? 'column' : 'row')};
+  justify-content: ${props => (props.reviewAllComponent ? 'center' : 'auto')};
+  align-items: ${props => (props.reviewAllComponent ? 'center' : 'auto')};
   flex-wrap: ${props => (props.reviewAllComponent ? 'wrap' : 'nowrap')};
   padding: 0 6px;
   text-align: center;

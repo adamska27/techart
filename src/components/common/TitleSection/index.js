@@ -3,10 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h3`
-  border-bottom: ${({ reverseColor, theme }) =>
-    reverseColor
-      ? `${theme.color.mainColor} solid 1px`
-      : `${theme.color.sideColor} solid 1px`};
+  border-bottom: ${({ border, reverseColor, theme }) =>
+    border
+      ? reverseColor
+        ? `${theme.color.mainColor} solid 1px`
+        : `${theme.color.sideColor} solid 1px`
+      : 'transparent'};
   color: ${({ reverseColor, theme }) =>
     reverseColor ? theme.color.sideColor : theme.color.mainColor};
   font-size: 20px;
@@ -17,12 +19,22 @@ const Title = styled.h3`
 
 export default class TitleSection extends React.PureComponent {
   static propTypes = {
+    border: PropTypes.bool,
+    className: PropTypes.string,
     reverseColor: PropTypes.string,
     value: PropTypes.string.isRequired
   };
 
+  static defaultProps = {
+    border: true
+  };
+
   render() {
-    const { reverseColor, value } = this.props;
-    return <Title reverseColor={reverseColor}>{value}</Title>;
+    const { border, className, reverseColor, value } = this.props;
+    return (
+      <Title border={border} className={className} reverseColor={reverseColor}>
+        {value}
+      </Title>
+    );
   }
 }

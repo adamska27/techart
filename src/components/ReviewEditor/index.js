@@ -1,5 +1,12 @@
 import React from 'react';
 import RichTextEditor from 'react-rte';
+import styled from 'styled-components';
+
+import Title from '../common/TitleSection';
+
+const Container = styled.div`
+  padding: 24px 12px;
+`;
 
 export default class ReviewEditor extends React.PureComponent {
   state = {
@@ -17,6 +24,13 @@ export default class ReviewEditor extends React.PureComponent {
   };
 
   render() {
-    return <RichTextEditor value={this.state.value} onChange={this.onChange} />;
+    return (
+      <React.Fragment>
+        <Title value="Write your review" />
+        <Container>
+          <RichTextEditor value={this.state.value} onChange={this.onChange} />
+        </Container>
+      </React.Fragment>
+    );
   }
 }
