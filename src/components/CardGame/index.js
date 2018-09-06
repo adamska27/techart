@@ -9,7 +9,6 @@ import PlaceHolderImage from '../common/PlaceHolderImage';
 import TitleAside from '../common/TitleAside';
 
 const Container = styled.div`
-  background-color: lightgray;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px;
   height: 450px;
@@ -26,6 +25,7 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   align-items: center;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   height: 400px;

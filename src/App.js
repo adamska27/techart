@@ -47,7 +47,7 @@ class App extends Component {
                     path="/reviews/product/:productId"
                     component={ReviewsAll}
                   />
-                  <Route path="/search/:keyword" component={SearchResult} />
+                  <Route path="/:keyword" component={SearchResult} />
                   <Route component={PagesNotFound} />
                 </Switch>
               </React.Fragment>

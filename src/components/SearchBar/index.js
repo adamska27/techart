@@ -4,11 +4,20 @@ import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from '../common/Button';
+import media from '../../styles/media';
+
+const ButtonStyled = styled(Button)`
+  border-radius: 0;
+`;
 
 const Container = styled.div`
   display: flex;
   height: 25px;
-  width: 150px;
+  justify-content: flex-end;
+
+  ${media.tablet`
+    justify-content: center;
+  `};
 `;
 
 const ButtonContainer = styled.div`
@@ -16,10 +25,12 @@ const ButtonContainer = styled.div`
   width: 100px;
 `;
 
+const FormStyled = styled.form`
+  width: 100%;
+`;
+
 const InputStyled = styled.input`
-  background-color: lightgrey;
-  border-radius: 3px;
-  height: 25px;
+  width: 50%;
 `;
 
 export default class SearchBar extends React.PureComponent {
@@ -47,7 +58,7 @@ export default class SearchBar extends React.PureComponent {
     const { keyword, redirect } = this.state;
 
     return (
-      <form onSubmit={e => this.onSearch(e, keyword)}>
+      <FormStyled onSubmit={e => this.onSearch(e, keyword)}>
         <Container>
           <InputStyled
             minLength="1"
@@ -58,11 +69,11 @@ export default class SearchBar extends React.PureComponent {
             value={keyword}
           />
           <ButtonContainer>
-            <Button type="submit" value="Chercher" />
+            <ButtonStyled type="submit" value="Search" />
           </ButtonContainer>
-          {redirect && <Redirect to={`/search/${keyword}`} />}
+          {redirect && <Redirect to={`/${keyword}`} />}
         </Container>
-      </form>
+      </FormStyled>
     );
   }
 }

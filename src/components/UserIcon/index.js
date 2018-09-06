@@ -6,12 +6,17 @@ import styled from 'styled-components';
 import PlaceHolder from '../common/PlaceHolderImage';
 
 const Container = styled.div`
+  height: 100px;
+  margin: 0 auto;
+  object-fit: contain;
   padding: 12px;
   text-align: center;
+  width: 100px;
 `;
 
 const ImageStyled = styled.img`
   border-radius: 5%;
+  height: 100%;
 `;
 
 const UserName = styled.div`
