@@ -26,8 +26,7 @@ const Container = styled.div`
 
 const ItemContainer = styled.li`
   border-radius: 3px;
-  box-shadow: ${({ theme }) =>
-    `0px 0px 5px 1px ${theme.color.mainColorTransparent}`};
+  box-shadow: ${({ theme }) => `0px 0px 5px 1px rgba(0,0,0,0.1)`};
   display: flex;
   margin: 12px 0;
 `;

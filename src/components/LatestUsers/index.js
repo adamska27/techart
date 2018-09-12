@@ -13,13 +13,13 @@ const Container = styled.div`
 `;
 
 const UserContainer = styled.div`
-  align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   overflow-x: scroll;
+  width: 350px;
 
-  ${media.phone`
-    justify-content: flex-start;
+  ${media.tablet`
+    width: 100%
   `};
 `;
 

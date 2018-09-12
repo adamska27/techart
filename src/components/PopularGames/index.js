@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Loader from '../common/Loader';
 import PlaceHolder from '../common/PlaceHolderImage';
 import TitleSection from '../common/TitleSection';
 import { H3 } from '../common/Text';
+
 import getBetterCover from '../../utils/getBetterCover';
 
 const HeightPlaceHolder = 210;
@@ -95,7 +97,9 @@ export default class PopularGames extends React.PureComponent {
   };
 
   render() {
-    const { popularGames } = this.props;
+    const { isFetching, popularGames } = this.props;
+
+    if (isFetching) return <Loader />;
 
     return (
       <React.Fragment>

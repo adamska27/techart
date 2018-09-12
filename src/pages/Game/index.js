@@ -17,6 +17,10 @@ const ButtonStyled = styled(Button)`
   padding: 12px 6px;
 `;
 
+const RatingsContainer = styled.div`
+  margin: 100px auto;
+`;
+
 const TitleStyled = styled(Title)`
   margin-top: 36px;
   text-align: center;
@@ -30,7 +34,9 @@ class Game extends React.PureComponent {
       <React.Fragment>
         <GameContainer match={match} fetched={fetched} />
         <TitleStyled value="AVERAGE" />
-        <Ratings match={match} />
+        <RatingsContainer>
+          <Ratings match={match} />
+        </RatingsContainer>
         <Link to={`/reviews/product/${match.params.gameId}`}>
           <ButtonContainer>
             <ButtonStyled value="See reviews" />

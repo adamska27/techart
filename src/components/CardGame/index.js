@@ -11,11 +11,11 @@ import TitleAside from '../common/TitleAside';
 const Container = styled.div`
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px;
-  height: 450px;
-  margin: 24px 6px;
+  margin: 24px auto;
+  min-height: 369px;
   text-align: center;
   overflow: hidden;
-  width: 320px;
+  width: 227px;
   transition: 0.5s;
 
   &:hover {
@@ -25,17 +25,18 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   align-items: center;
-  background-color: lightgray;
   display: flex;
   justify-content: center;
-  height: 400px;
-  width: 320px;
 `;
 
 const ImageStyled = styled.img`
+  height: 320px;
+  width: 228px;
   object-fit: cover;
-  height: 100%;
-  width: 100%;
+`;
+
+const TitleAsideStyled = styled(TitleAside)`
+  padding: 6px;
 `;
 
 export default class CardGame extends React.PureComponent {
@@ -70,7 +71,7 @@ export default class CardGame extends React.PureComponent {
               <PlaceHolderImage height={320} width={227} />
             )}
           </ImageContainer>
-          <TitleAside value={name} />
+          <TitleAsideStyled value={name} />
         </Container>
       </Link>
     );

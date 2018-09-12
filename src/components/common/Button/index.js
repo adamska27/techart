@@ -7,8 +7,7 @@ const ButtonStyled = styled.button`
   border-radius: 6px;
   color: black;
   cursor: pointer;
-  box-shadow: ${({ theme }) =>
-    `0px 0px 5px 1px ${theme.color.mainColorTransparent}`};
+  box-shadow: ${({ theme }) => `0px 0px 5px 1px rgba(0,0,0,0.1)`};
   height: 100%;
   width: 100%;
 
