@@ -37,7 +37,8 @@ const ImageContainer = styled.div`
     props.second ? props.theme.color.player2 : props.theme.color.player1};
   border-width: 4px;
   display: inline-block;
-  height: 140px;
+  height: 100px;
+  width: 100px;
 `;
 
 const ImageStyled = styled.img`
@@ -109,8 +110,6 @@ export default class Profile extends React.PureComponent {
 
     const {
       id,
-      firstName,
-      lastName,
       userName,
       profilePicture,
       adventure,
@@ -127,8 +126,6 @@ export default class Profile extends React.PureComponent {
 
     const {
       id: id2,
-      firstName: firstName2,
-      lastName: lastName2,
       userName: userName2,
       profilePicture: profilePicture2,
       adventure: adventure2,
@@ -178,28 +175,28 @@ export default class Profile extends React.PureComponent {
             player1={userName}
             player2={userName2}
             userGamerProfile={[
+              rpg,
               adventure,
               action,
-              horror,
-              sport,
-              auto,
-              shooter,
-              str,
               platform,
               versus,
-              rpg
+              shooter,
+              sport,
+              auto,
+              str,
+              horror
             ]}
             userGamerProfile2={[
+              rpg2,
               adventure2,
               action2,
-              horror2,
-              sport2,
-              auto2,
-              shooter2,
-              str2,
               platform2,
               versus2,
-              rpg2
+              shooter2,
+              sport2,
+              auto2,
+              str2,
+              horror2
             ]}
           />
         </GamerProfileContainer>
