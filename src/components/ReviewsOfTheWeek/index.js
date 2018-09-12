@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import CardGame from '../CardGame';
+import Loader from '../common/Loader';
 import Title from '../common/TitleSection';
 import UserIcon from '../UserIcon';
 
@@ -11,6 +13,7 @@ import media from '../../styles/media';
 import { reviewsType } from '../../PropTypes';
 
 const AvatarContainer = styled.div`
+  display: inline-block;
   margin-top: 12px;
 `;
 
@@ -26,6 +29,7 @@ const Body = styled.div`
 
 const Container = styled.div`
   padding: 24px 0;
+  text-align: center;
 
   ${media.phone`
     padding: 0px;
@@ -136,11 +140,26 @@ export default class ReviewsOfTheWeek extends React.PureComponent {
   };
 
   render() {
-    const { reviews, reviewAllComponent } = this.props;
+    const {
+      isFetching,
+      fromCollection,
+      reviews,
+      reviewAllComponent
+    } = this.props;
+
+    if (isFetching) return <Loader />;
 
     return (
       <Container>
-        {reviewAllComponent ? (
+        {fromCollection && reviews && reviews.length ? (
+          <AvatarContainer>
+            <UserIcon
+              id={reviews[0].user_id}
+              userName={reviews[0].userName}
+              profilePicture={reviews[0].profilePicture}
+            />
+          </AvatarContainer>
+        ) : reviewAllComponent ? (
           this.renderHeaderCover(reviews)
         ) : (
           <Title value="Reviews Of The Week" />
@@ -148,28 +167,46 @@ export default class ReviewsOfTheWeek extends React.PureComponent {
         <ReviewsContainer reviewAllComponent={reviewAllComponent}>
           {reviews && reviews.length ? (
             reviews.map(review => {
+              const {
+                id,
+                body,
+                cover,
+                likes_count,
+                name,
+                product_id,
+                profilePicture,
+                user_id,
+                userName
+              } = review;
+              const game = {
+                id: product_id,
+                cover,
+                name
+              };
               return (
                 <ReviewContainer
-                  key={review.id}
+                  key={id}
                   reviewAllComponent={reviewAllComponent}
                 >
                   {reviewAllComponent ? null : (
-                    <img src={this.getCover(review.cover.url)} alt={`cover`} />
+                    <img src={this.getCover(cover.url)} alt={`cover`} />
                   )}
-                  {this.renderBody(review.body)}
-                  <Link to={`/review/${review.product_id}/${review.id}`}>
+                  {this.renderBody(body)}
+                  <Link to={`/review/${product_id}/${id}`}>
                     <ReadMore>Read more...</ReadMore>
                   </Link>
-                  {review.likes_count ? (
-                    <div>{review.likes_count} Likes</div>
-                  ) : null}
-                  <AvatarContainer>
-                    <UserIcon
-                      id={review.user_id}
-                      userName={review.userName}
-                      profilePicture={review.profilePicture}
-                    />
-                  </AvatarContainer>
+                  {likes_count ? <div>{likes_count} Likes</div> : null}
+                  {fromCollection ? (
+                    <CardGame game={game} />
+                  ) : (
+                    <AvatarContainer>
+                      <UserIcon
+                        id={user_id}
+                        userName={userName}
+                        profilePicture={profilePicture}
+                      />
+                    </AvatarContainer>
+                  )}
                 </ReviewContainer>
               );
             })

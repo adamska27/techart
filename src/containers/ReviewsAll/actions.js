@@ -4,14 +4,16 @@ import {
   FETCH_ALL_REVIEWS_SUCCESS
 } from './constants';
 
-const fetchAllReviewsRequest = () => ({ type: FETCH_ALL_REVIEWS_REQUEST });
+export const fetchAllReviewsRequest = () => ({
+  type: FETCH_ALL_REVIEWS_REQUEST
+});
 
-const fetchAllReviewsFailed = error => ({
+export const fetchAllReviewsFailed = error => ({
   type: FETCH_ALL_REVIEWS_FAILED,
   error
 });
 
-const fetchAllReviewsSuccess = reviews => ({
+export const fetchAllReviewsSuccess = reviews => ({
   type: FETCH_ALL_REVIEWS_SUCCESS,
   reviews
 });

@@ -1,3 +1,4 @@
+import idx from 'idx';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,15 +15,24 @@ export default class ReviewsAll extends React.PureComponent {
   };
 
   render() {
-    const { error, fetchReviews, isFetching, match, reviews } = this.props;
+    const {
+      fromCollection,
+      error,
+      fetchReviews,
+      isFetching,
+      match,
+      reviews
+    } = this.props;
+    const productId = idx(match, _ => _.params.productId);
 
     return (
       <React.Fragment>
         <Reviews
           error={error}
+          fromCollection={fromCollection}
           fetchReviews={fetchReviews}
           isFetching={isFetching}
-          productId={match.params.productId}
+          productId={productId}
           reviewAllComponent
           reviews={reviews}
         />

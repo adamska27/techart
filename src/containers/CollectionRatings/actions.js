@@ -19,7 +19,7 @@ const fetchCollectionSuccess = collection => ({
 });
 
 export const fetchCollection = token => async dispatch => {
-  const url = 'http://localhost:3005/user/collection';
+  const url = 'http://localhost:3005/rating/collection';
 
   dispatch(fetchCollectionRequest());
 

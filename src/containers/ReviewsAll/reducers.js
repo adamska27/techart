@@ -4,7 +4,7 @@ import {
   FETCH_ALL_REVIEWS_SUCCESS
 } from './constants';
 
-const initialState = {
+export const initialState = {
   error: null,
   isFetching: false,
   reviews: []

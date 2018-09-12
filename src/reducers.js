@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
 import { account } from './containers/AccountContainer/reducers';
-import { collection } from './containers/Collection/reducers';
+import { collectionRatings } from './containers/CollectionRatings/reducers';
+import { collectionReviews } from './containers/CollectionReviews/reducers';
 import { game } from './containers/GameContainer/reducers';
 import { latestUsers } from './containers/LatestUsers/reducers';
 import { likeUnlikeReview } from './containers/LikeUnlikeReview/reducers';
@@ -19,7 +20,8 @@ import { userOfTheWeek } from './containers/UserOfTheWeek/reducers';
 
 const reducers = combineReducers({
   account,
-  collection,
+  collectionRatings,
+  collectionReviews,
   game,
   latestUsers,
   likeUnlikeReview,

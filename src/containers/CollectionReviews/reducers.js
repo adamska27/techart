@@ -1,7 +1,7 @@
 import {
-  FETCH_COLLECTION_FAILED,
-  FETCH_COLLECTION_REQUEST,
-  FETCH_COLLECTION_SUCCESS
+  FETCH_COLLECTION_REVIEWS_FAILED,
+  FETCH_COLLECTION_REVIEWS_REQUEST,
+  FETCH_COLLECTION_REVIEWS_SUCCESS
 } from './constants';
 
 const initialState = {
@@ -10,13 +10,13 @@ const initialState = {
   collection: []
 };
 
-export const collection = (state = initialState, action) => {
+export const collectionReviews = (state = initialState, action) => {
   switch (action.type) {
-  case FETCH_COLLECTION_REQUEST:
+  case FETCH_COLLECTION_REVIEWS_REQUEST:
     return { ...state, isFetching: true };
-  case FETCH_COLLECTION_FAILED:
+  case FETCH_COLLECTION_REVIEWS_FAILED:
     return { ...state, isFetching: false, error: action.error };
-  case FETCH_COLLECTION_SUCCESS:
+  case FETCH_COLLECTION_REVIEWS_SUCCESS:
     return { ...state, isFetching: false, collection: action.collection };
   default:
     return state;
