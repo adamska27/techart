@@ -1,9 +1,9 @@
+import decode from 'jwt-decode';
 import idx from 'idx';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import decode from 'jwt-decode';
 
 import media from '../../styles/media';
 import yinYang from '../../static/yinYang.png';
@@ -106,6 +106,7 @@ export default class Header extends React.Component {
     changeToLightTheme: PropTypes.func.isRequired,
     closeNavMobile: PropTypes.func.isRequired,
     jwt: PropTypes.string,
+    logout: PropTypes.func.isRequired,
     navMobile: PropTypes.bool.isRequired,
     openNavMobile: PropTypes.func.isRequired,
     theme: PropTypes.string.isRequired
@@ -128,14 +129,15 @@ export default class Header extends React.Component {
     }
   };
 
-  logout = () => {
-    this.props.logout();
+  logout = async () => {
+    await this.props.logout();
   };
 
   render() {
     const { jwt, navMobile } = this.props;
     const decodedToken = jwt ? decode(jwt) : null;
     const id = idx(decodedToken, _ => _.id);
+
     return (
       <ContainerHeader>
         <ContainerNav>
@@ -183,9 +185,9 @@ export default class Header extends React.Component {
               </React.Fragment>
             )}
           </AccountNav>
-          {/* <SearchBarContainer>
+          <SearchBarContainer>
             <Search />
-          </SearchBarContainer> */}
+          </SearchBarContainer>
           {/* <button onClick={this.onChangeTheme}>change theme</button> */}
         </ContainerNav>
       </ContainerHeader>
