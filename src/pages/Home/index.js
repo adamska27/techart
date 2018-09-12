@@ -1,24 +1,14 @@
-import { connect } from 'react-redux';
 import React from 'react';
 import styled from 'styled-components';
 
 import media from '../../styles/media';
 
-import Loader from '../../components/common/Loader';
 import LatestUsers from '../../containers/LatestUsers';
 import PopularGamesContainer from '../../containers/PopularGames';
 import RecentGamesContainer from '../../containers/RecentGames';
 import ReviewsOfTheWeek from '../../containers/ReviewsOfTheWeek';
 import UserOfTheWeek from '../../containers/UserOfTheWeek';
 import Wraper from '../../HOC/Wraper';
-
-// need to get all the isFetching info to display or not the loader on the page
-const mapStateToProps = state => ({
-  isFetchingPopularGames: state.popularGames.isFetching,
-  isFetchingRecentGames: state.recentGames.isFetching,
-  isFetchingUserOfTheWeek: state.userOfTheWeek.isFetching,
-  isFetchingLatestUsers: state.latestUsers.isFetching
-});
 
 const MainContainer = styled.div`
   /* background-color: #000;
@@ -28,8 +18,8 @@ const MainContainer = styled.div`
 
 const SubContainer = styled.div`
   display: grid;
-  grid-gap: 12px;
-  grid-template-columns: 2fr 1fr;
+  grid-gap: 48px;
+  grid-template-columns: 2fr min-content;
   padding: 48px 0;
 
   ${media.tablet`
@@ -52,22 +42,6 @@ const UsersInfos = styled.div`
 
 class Home extends React.Component {
   render() {
-    const {
-      isFetchingLatestUsers,
-      isFetchingPopularGames,
-      isFetchingRecentGames,
-      isFetchingUserOfTheWeek
-    } = this.props;
-
-    if (
-      isFetchingLatestUsers ||
-      isFetchingPopularGames ||
-      isFetchingRecentGames ||
-      isFetchingUserOfTheWeek
-    ) {
-      return <Loader />;
-    }
-
     return (
       <MainContainer>
         <PopularGamesContainer />
@@ -84,4 +58,4 @@ class Home extends React.Component {
   }
 }
 
-export default Wraper(connect(mapStateToProps, null)(Home));
+export default Wraper(Home);

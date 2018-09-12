@@ -1,3 +1,5 @@
+import decode from 'jwt-decode';
+import idx from 'idx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
@@ -87,6 +89,8 @@ export default class Review extends React.PureComponent {
   render() {
     const { isFetching, review, token } = this.props;
     const { isLiked, likes_count } = this.state;
+    const decodedToken = token ? decode(token) : null;
+    const id = idx(decodedToken, _ => _.id);
 
     if (isFetching) {
       return <Loader />;
@@ -107,7 +111,7 @@ export default class Review extends React.PureComponent {
               <Count>
                 <p>{likes_count} likes</p>
               </Count>
-              {token ? (
+              {token && id !== review.users_id ? (
                 <LikeUnlikeReview
                   handleCountLikeUnlike={this.handleCountLikeUnlike}
                   isLiked={isLiked}
