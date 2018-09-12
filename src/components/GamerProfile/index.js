@@ -13,13 +13,11 @@ const Container = styled.div`
 export default class GamerProfile extends React.PureComponent {
   static propTypes = {
     userGamerProfile: PropTypes.array,
-    userGamerProfile2: PropTypes.array,
-    myGamerProfile: PropTypes.object
+    userGamerProfile2: PropTypes.array
   };
 
   render() {
     const {
-      myGamerProfile,
       player1,
       player2,
       userGamerProfile,
@@ -27,16 +25,16 @@ export default class GamerProfile extends React.PureComponent {
     } = this.props;
     const data = {
       labels: [
+        'rpg',
         'adventure',
         'action',
-        'horror',
-        'sport',
-        'auto',
-        'shooter',
-        'str',
         'platform',
         'versus',
-        'rpg'
+        'shooter',
+        'sport',
+        'auto',
+        'str',
+        'horror'
       ],
       datasets: [
         {

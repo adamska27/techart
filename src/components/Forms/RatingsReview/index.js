@@ -23,14 +23,19 @@ const ButtonStyled = styled(Button)`
 const ContainerArt = styled.div`
   display: flex;
   height: 350px;
-  justify-content: space-between;
-  padding: 24px;
+  justify-content: space-around;
+  padding-bottom: 70px;
   width: 100%;
 `;
 
 const ContainerTech = ContainerArt.extend`
   flex-direction: column;
-  width: 50%;
+  padding: 0 92px 92px 92px;
+  width: auto;
+`;
+
+const FormStyled = styled.form`
+  padding: 12px;
 `;
 
 const SliderContainer = styled.div`
@@ -39,6 +44,10 @@ const SliderContainer = styled.div`
   height: 400;
   margin-bottom: 160;
   margin-left: 50;
+`;
+
+const TitleStyled = styled(Title)`
+  margin-bottom: 21px;
 `;
 
 const marks = {
@@ -114,10 +123,11 @@ export default class RatingsReview extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <form onSubmit={this.onSubmit}>
+        <FormStyled onSubmit={this.onSubmit}>
           <Title value="Art" />
           <ContainerArt>
             <SliderContainer>
+              <TitleStyled value="story" />
               <Slider
                 vertical
                 min={1}
@@ -130,6 +140,7 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled value="feeling" />
               <Slider
                 vertical
                 min={1}
@@ -142,6 +153,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled value="level design" />
+
               <Slider
                 vertical
                 min={1}
@@ -154,6 +167,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled value="art design" />
+
               <Slider
                 vertical
                 min={1}
@@ -166,6 +181,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled value="originality" />
+
               <Slider
                 vertical
                 min={1}
@@ -176,23 +193,25 @@ export default class RatingsReview extends React.PureComponent {
                 defaultValue={5}
               />
             </SliderContainer>
+          </ContainerArt>
 
+          <Title value="Tech" />
+          <ContainerTech>
+            <TitleStyled border={false} value="soundDesign" />
             <SliderContainer>
               <Slider
-                vertical
                 min={1}
                 max={10}
-                marks={marks}
+                marks={marks2}
                 step={1}
                 onChange={value => this.onChange(value, 'soundDesign')}
                 defaultValue={5}
               />
             </SliderContainer>
-          </ContainerArt>
 
-          <Title value="Tech" />
-          <ContainerTech>
             <SliderContainer>
+              <TitleStyled border={false} value="textures" />
+
               <Slider
                 min={1}
                 max={10}
@@ -204,6 +223,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled border={false} value="framerate" />
+
               <Slider
                 min={1}
                 max={10}
@@ -215,6 +236,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled border={false} value="physics" />
+
               <Slider
                 min={1}
                 max={10}
@@ -226,6 +249,8 @@ export default class RatingsReview extends React.PureComponent {
             </SliderContainer>
 
             <SliderContainer>
+              <TitleStyled border={false} value="lighting" />
+
               <Slider
                 min={1}
                 max={10}
@@ -238,9 +263,9 @@ export default class RatingsReview extends React.PureComponent {
           </ContainerTech>
           <ReviewEditor onChange={this.onReviewChange} />
           <ButtonContainer>
-            <ButtonStyled type="submit" value="Valider" />
+            <ButtonStyled type="submit" value="Confirm" />
           </ButtonContainer>
-        </form>
+        </FormStyled>
       </React.Fragment>
     );
   }

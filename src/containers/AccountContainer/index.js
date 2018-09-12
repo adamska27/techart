@@ -6,8 +6,7 @@ import Account from '../../components/Forms/Account';
 const mapStateToProps = state => ({
   error: state.account.error,
   isFetching: state.account.isFetching,
-  login: state.account.login,
-  register: state.account.register
+  login: state.account.login
 });
 
 const mapDispatchToProps = dispatch => ({

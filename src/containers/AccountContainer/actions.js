@@ -17,7 +17,7 @@ export const signUpFailed = error => ({
   error
 });
 
-export const signUpSuccess = success => ({ type: SIGNUP_SUCCESS, success });
+export const signUpSuccess = message => ({ type: SIGNUP_SUCCESS, message });
 
 export const fetchSignUp = data => async dispatch => {
   dispatch(signUpRequest());
@@ -29,6 +29,7 @@ export const fetchSignUp = data => async dispatch => {
     },
     body: JSON.stringify(data)
   });
+
   if (fetchSignUp.status === 200) {
     const result = await fetchSignUp.json();
     return dispatch(signUpSuccess(result));

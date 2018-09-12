@@ -13,7 +13,8 @@ const initialState = {
   isFetching: false,
   jwt: null,
   register: false,
-  login: false
+  login: false,
+  message: ''
 };
 
 export const account = (state = initialState, action) => {
@@ -21,7 +22,7 @@ export const account = (state = initialState, action) => {
   case SIGNUP_REQUEST:
     return { ...state, isFetching: true };
   case SIGNUP_SUCCESS:
-    return { ...state, isFetching: false, register: true };
+    return { ...state, isFetching: false, message: action.result };
   case SIGNUP_FAILED:
     return { ...state, error: action.error, isFetching: false };
   case LOGIN_REQUEST:

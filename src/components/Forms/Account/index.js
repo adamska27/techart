@@ -48,7 +48,12 @@ const ButtonSubmitContainer = styled.div`
 `;
 
 const GamerProfileContainer = styled.div`
-  width: 100%;
+  margin: 0 auto;
+  width: 60%;
+
+  ${media.tablet`
+    width: 100%;
+  `};
 `;
 
 const GamerProfileToggle = styled.div`
@@ -120,19 +125,20 @@ export default class Account extends React.Component {
     password: '',
     profilePicture: 'https://cdn.filestackcontent.com/Nes1kLxSwC7YqVEBF1fR',
     gamerProfile: {
+      rpg: 5,
       adventure: 5,
       action: 5,
-      horror: 5,
+      versus: 5,
+      shooter: 5,
+      platform: 5,
       sport: 5,
       auto: 5,
-      shooter: 5,
       str: 5,
-      platform: 5,
-      versus: 5,
-      rpg: 5
+      horror: 5
     },
     showGamerProfilSlider: false,
-    focus: false
+    focus: false,
+    redirect: false
   };
 
   static propTypes = {
@@ -141,15 +147,13 @@ export default class Account extends React.Component {
     fetchSignUp: PropTypes.func.isRequired,
     isFetching: PropTypes.bool.isRequired,
     login: PropTypes.bool.isRequired,
-    register: PropTypes.bool.isRequired,
     template: PropTypes.string
   };
 
   static defaultProps = {
     error: null,
     isFetching: false,
-    login: false,
-    register: false
+    login: false
   };
 
   onGamerProfileChange = (value, name) => {
@@ -168,7 +172,7 @@ export default class Account extends React.Component {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     let data;
     if (this.state.showGamerProfilSlider) {
@@ -196,7 +200,11 @@ export default class Account extends React.Component {
     }
     const { fetchSignUp, fetchLogin, template } = this.props;
     // adapt the submit function according to the form (template)
-    template === 'signup' ? fetchSignUp(data) : fetchLogin(data);
+    const result =
+      template === 'signup' ? await fetchSignUp(data) : await fetchLogin(data);
+    if (template === 'signup' && !result.error) {
+      this.setState({ redirect: true });
+    }
   };
 
   onSuccessProfilePicture = result => {
@@ -219,8 +227,8 @@ export default class Account extends React.Component {
   };
 
   render() {
-    const { login, register, template } = this.props;
-    const { showGamerProfilSlider } = this.state;
+    const { login, template } = this.props;
+    const { redirect, showGamerProfilSlider } = this.state;
     const options = {
       accept: 'image/*',
       imageDim: [100, 100],
@@ -229,10 +237,11 @@ export default class Account extends React.Component {
         location: 's3'
       }
     };
-    // redirect when the user finish the inscription
-    if (register && template === 'signup') {
+    // // redirect when the user finish the inscription
+    if (redirect && template === 'signup') {
       return <Redirect to="/login" />;
     }
+
     // redirect when the user login
     if (login) {
       return <Redirect to="/" />;
@@ -289,6 +298,21 @@ export default class Account extends React.Component {
               {showGamerProfilSlider ? (
                 <GamerProfileContainer>
                   <SliderContainer>
+                    {this.sliderLabel('rpg')}
+
+                    <Slider
+                      included={false}
+                      min={1}
+                      max={10}
+                      marks={marks}
+                      step={2.5}
+                      onChange={value =>
+                        this.onGamerProfileChange(value, 'rpg')
+                      }
+                      defaultValue={5}
+                    />
+                  </SliderContainer>
+                  <SliderContainer>
                     {this.sliderLabel('adventure')}
                     <Slider
                       included={false}
@@ -318,7 +342,21 @@ export default class Account extends React.Component {
                     />
                   </SliderContainer>
                   <SliderContainer>
-                    {this.sliderLabel('horror')}
+                    {this.sliderLabel('platform')}
+                    <Slider
+                      included={false}
+                      min={1}
+                      max={10}
+                      marks={marks}
+                      step={2.5}
+                      onChange={value =>
+                        this.onGamerProfileChange(value, 'platform')
+                      }
+                      defaultValue={5}
+                    />
+                  </SliderContainer>
+                  <SliderContainer>
+                    {this.sliderLabel('versus')}
 
                     <Slider
                       included={false}
@@ -327,11 +365,27 @@ export default class Account extends React.Component {
                       marks={marks}
                       step={2.5}
                       onChange={value =>
-                        this.onGamerProfileChange(value, 'horror')
+                        this.onGamerProfileChange(value, 'versus')
                       }
                       defaultValue={5}
                     />
                   </SliderContainer>
+                  <SliderContainer>
+                    {this.sliderLabel('shooter')}
+
+                    <Slider
+                      included={false}
+                      min={1}
+                      max={10}
+                      marks={marks}
+                      step={2.5}
+                      onChange={value =>
+                        this.onGamerProfileChange(value, 'shooter')
+                      }
+                      defaultValue={5}
+                    />
+                  </SliderContainer>
+
                   <SliderContainer>
                     {this.sliderLabel('sport')}
 
@@ -362,21 +416,7 @@ export default class Account extends React.Component {
                       defaultValue={5}
                     />
                   </SliderContainer>
-                  <SliderContainer>
-                    {this.sliderLabel('shooter')}
 
-                    <Slider
-                      included={false}
-                      min={1}
-                      max={10}
-                      marks={marks}
-                      step={2.5}
-                      onChange={value =>
-                        this.onGamerProfileChange(value, 'shooter')
-                      }
-                      defaultValue={5}
-                    />
-                  </SliderContainer>
                   <SliderContainer>
                     {this.sliderLabel('str')}
 
@@ -392,8 +432,9 @@ export default class Account extends React.Component {
                       defaultValue={5}
                     />
                   </SliderContainer>
+
                   <SliderContainer>
-                    {this.sliderLabel('platform')}
+                    {this.sliderLabel('horror')}
 
                     <Slider
                       included={false}
@@ -402,37 +443,7 @@ export default class Account extends React.Component {
                       marks={marks}
                       step={2.5}
                       onChange={value =>
-                        this.onGamerProfileChange(value, 'platform')
-                      }
-                      defaultValue={5}
-                    />
-                  </SliderContainer>
-                  <SliderContainer>
-                    {this.sliderLabel('versus')}
-
-                    <Slider
-                      included={false}
-                      min={1}
-                      max={10}
-                      marks={marks}
-                      step={2.5}
-                      onChange={value =>
-                        this.onGamerProfileChange(value, 'versus')
-                      }
-                      defaultValue={5}
-                    />
-                  </SliderContainer>
-                  <SliderContainer>
-                    {this.sliderLabel('rpg')}
-
-                    <Slider
-                      included={false}
-                      min={1}
-                      max={10}
-                      marks={marks}
-                      step={2.5}
-                      onChange={value =>
-                        this.onGamerProfileChange(value, 'rpg')
+                        this.onGamerProfileChange(value, 'horror')
                       }
                       defaultValue={5}
                     />
