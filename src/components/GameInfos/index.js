@@ -12,6 +12,16 @@ import Title from '../common/TitleSection';
 import { Normal } from '../common/Text';
 import YoutubePlayer from '../YoutubePlayer';
 
+const Artwork = styled.img`
+  height: 100%;
+  width: 100%;
+`;
+
+const ArtworkContainer = styled.div`
+  min-height: 250px;
+  min-width: 450px;
+`;
+
 const Container = styled.div`
   margin: 48px auto;
   padding: 12px 24px;
@@ -38,9 +48,18 @@ const ContainerInfos = styled.div`
     `};
 `;
 
+const ContainerScreenshots = styled.div`
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  display: flex;
+  margin-top: 48px;
+  overflow-x: scroll;
+  width: 100%;
+`;
+
 const Cover = styled.img`
   height: 100%;
   object-fit: cover;
+  object-position: center;
   width: 100%;
 `;
 
@@ -52,14 +71,13 @@ const CoverContainer = styled.div`
 `;
 
 const HeaderImageContainer = styled.div`
-  background-image: url(${props => (props.src ? props.src : null)});
+  background: url(${props => (props.src ? props.src : null)}) no-repeat center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 720px;
   width: 100%;
 
   ${media.phone`
-    background-size: contain;
     height: 250px;
   `};
 `;
@@ -100,7 +118,7 @@ const InfoTitle = styled(Normal)`
 
 const Summary = styled.div`
   grid-area: Summary;
-  line-height: 1.2em;
+  line-height: 1.5em;
   padding: 12px;
   text-align: justify;
 `;
@@ -146,19 +164,19 @@ export default class GameInfos extends React.PureComponent {
     }
 
     // game infos
-    const artworks =
-      idx(game, _ => _[0].artworks) || idx(game, _ => _[0].screenshots);
-    let artworksLength = (artworks && artworks.length) || 0;
+    const artworks = idx(game, _ => _[0].artworks);
+    const screenshots = idx(game, _ => _[0].screenshots);
+    let screenshotsLength = (screenshots && screenshots.length) || 0;
     // get a random number inferior at the sreenshots array length
-    let artworksNumber = Math.floor(Math.random() * artworksLength);
-    // use artworksNumber to get a random image among the screenshots available
-    const headerImage = artworksLength
-      ? getBetterCover(artworks[artworksNumber].url, /thumb/, '720p')
+    let screenshotsNumber = Math.floor(Math.random() * screenshotsLength);
+    // use screenshotsNumber to get a random image among the screenshots available
+    const headerImage = screenshotsLength
+      ? getBetterCover(screenshots[screenshotsNumber].url, /thumb/, '720p')
       : null;
 
     const cover = idx(game[0], _ => _.cover.url);
     const betterCover = cover
-      ? getBetterCover(cover, /thumb/, 'screenshot_med')
+      ? getBetterCover(cover, /thumb/, 'cover_big')
       : null;
     const developers = idx(game[0], _ => _.developers);
     // const extensions = idx(game[0], _ => _.extensions);
@@ -221,6 +239,26 @@ export default class GameInfos extends React.PureComponent {
                     </Infos>
                   </Info4>
                 </ContainerInfos>
+                <ContainerScreenshots>
+                  {artworks &&
+                    artworks.length &&
+                    artworks.map(artwork => {
+                      const betterArtwork = getBetterCover(
+                        artwork.url,
+                        /thumb/,
+                        'screenshot_med'
+                      );
+                      return (
+                        <ArtworkContainer>
+                          <Artwork
+                            key={artwork.cloudinary_id}
+                            src={betterArtwork}
+                            alt="artwork"
+                          />
+                        </ArtworkContainer>
+                      );
+                    })}
+                </ContainerScreenshots>
               </Container>
             </div>
           </React.Fragment>
