@@ -1,5 +1,12 @@
 import PropTypes from 'prop-types';
 
+export const coverType = PropTypes.shape({
+  url: PropTypes.string.isRequired,
+  cloudinary_id: PropTypes.string.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired
+});
+
 export const basicType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired
@@ -87,7 +94,9 @@ export const reviewsType = PropTypes.shape({
   product_id: PropTypes.number.isRequired,
   user_id: PropTypes.number.isRequired,
   likes_count: PropTypes.string.isRequired,
+  cover: coverType,
   body: PropTypes.string.isRequired,
   profilePicture: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired
+  userName: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired
 });
