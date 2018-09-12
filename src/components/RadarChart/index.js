@@ -20,7 +20,7 @@ const ButtonStyled = styled(Button)`
 `;
 
 const Container = styled.div`
-  margin: 100px auto;
+  margin: 0 auto;
   width: 80%;
 
   ${media.phone`
@@ -28,26 +28,46 @@ const Container = styled.div`
   `};
 `;
 
+const RadarContainer = styled.div`
+  height: 500px;
+  width: 100%;
+
+  ${media.phone`
+    height: 200px;
+  `};
+`;
+
 export default class RadarChart extends React.PureComponent {
   static propTypes = {
-    fetchUserRatings: PropTypes.func.isRequired,
-    fetchRatingsAverage: PropTypes.func.isRequired,
+    collection: PropTypes.bool,
+    fetchUserRatings: PropTypes.func,
+    fetchRatingsAverage: PropTypes.func,
     jwt: PropTypes.string,
-    ratingsAverage: PropTypes.array.isRequired,
+    ratingsAverage: PropTypes.array,
     userRatings: PropTypes.array.isRequired
   };
 
   componentDidMount() {
-    const { jwt, fetchUserRatings, fetchRatingsAverage, match } = this.props;
-    const { gameId } = match.params;
+    const {
+      collection,
+      jwt,
+      fetchUserRatings,
+      fetchRatingsAverage,
+      match
+    } = this.props;
+    if (collection) return;
+    const { gameId } = match ? match.params : null;
     if (jwt) {
       fetchUserRatings(jwt, gameId);
     }
-    fetchRatingsAverage(gameId);
+    if (match) {
+      fetchRatingsAverage(gameId);
+    }
   }
 
   render() {
-    const { jwt, userRatings, ratingsAverage } = this.props;
+    const { collection, jwt, userRatings, ratingsAverage } = this.props;
+    const legend = collection ? false : true;
     const data = {
       labels: [
         'story',
@@ -73,7 +93,7 @@ export default class RadarChart extends React.PureComponent {
           data: ratingsAverage || null
         },
         {
-          label: userRatings.length ? 'Mon ressenti' : '',
+          label: userRatings.length ? 'Mon ressenti' : 'test',
           backgroundColor: userRatings.length
             ? theme.color.mainColorTransparent
             : 'transparent',
@@ -96,7 +116,7 @@ export default class RadarChart extends React.PureComponent {
         },
         // default data set with min 0 and max 10 to set the graduation
         {
-          label: '',
+          label: 'default',
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           pointBackgroundColor: 'transparent',
@@ -112,11 +132,9 @@ export default class RadarChart extends React.PureComponent {
         {(userRatings && userRatings.length) ||
         (ratingsAverage && ratingsAverage.length) ? (
           <div>
-            <div style={{ width: '100%', height: '500px' }}>
+            <RadarContainer>
               <Radar
                 data={data}
-                height={200}
-                width={200}
                 options={{
                   maintainAspectRatio: false,
                   legend: false,
@@ -148,7 +166,7 @@ export default class RadarChart extends React.PureComponent {
                   }
                 }}
               />
-            </div>
+            </RadarContainer>
           </div>
         ) : null}
         {!userRatings || (userRatings && !Object.keys(userRatings).length) ? (
